@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<a href="http://www.puc-rio.br">PUC-Rio</a>
+<body>
+    <nav>
+<h1> Monetização da BioForm </h1>
+
+<h2>1. Plano Premium — principal fonte de receita</h2>
+
+<h3>Grátis:</h3>
+Registro de treinos;
+Registro básico de alimentação;
+Metas simples de calorias/macros;
+Desafios e competição entre usuários;
+Histórico básico.
+
+<h3>Premium:</h3>
+Treinos personalizados mais completos;
+Planos alimentares personalizados;
+Análises detalhadas de evolução;
+Mais opções de periodização;
+Relatórios de desempenho;
+Histórico ilimitado;
+Recomendações mais avançadas;
+Personalização maior dos desafios.
+Um exemplo seria cobrar R$ 19,90 a R$ 29,90 por mês, ou oferecer um plano anual com desconto.
+
+ <h2>2. Desafios e competições premium</h2>
+Para incentivar os usuários, poderiamos criar desafios especiais:
+Desafios mensais;
+Competições entre amigos;
+Rankings personalizados;
+Badges e conquistas;
+Competições por equipes.
+A participação básica poderia ser gratuita, enquanto desafios especiais e recursos avançados poderiam fazer parte do Premium.
+
+<h2>3. Parcerias com empresas</h2> 
+O aplicativo poderia fechar parcerias com empresas relacionadas ao universo fitness:
+Academias;
+Lojas de suplementos e equipamentos;
+Marcas de roupas esportivas;
+Estúdios de treinamento;
+Restaurantes ou serviços de alimentação saudável.
+Por exemplo, uma academia poderia pagar para oferecer um benefício aos usuários do aplicativo.
+
+<h2>4. Publicidade na versão gratuita</h2>
+Usuários gratuitos poderiam visualizar anúncios relacionados ao universo fitness.
+Porém, eu evitaria deixar os anúncios muito invasivos. O Premium poderia remover completamente os anúncios, criando mais um incentivo para a assinatura.
+
+<h2>5. Marketplace</h2>
+No futuro, vocês poderiam criar uma área dentro do aplicativo para produtos e serviços relacionados a treino e alimentação.
+Por exemplo:
+
+<h3>Usuário → aplicativo → parceiro</h3>
+
+Quando o usuário comprar algo através da plataforma, o aplicativo recebe uma comissão pela venda.
+
+ <h2>6. Profissionais dentro da plataforma</h2>
+Outra possibilidade seria permitir que nutricionistas, personal trainers e outros profissionais ofereçam serviços pela plataforma.
+O aplicativo poderia cobrar uma comissão sobre cada contratação realizada.
+Isso também ajudaria a resolver uma limitação importante: o aplicativo pode oferecer orientação geral, mas usuários que desejarem um acompanhamento individual poderiam procurar um profissional pela própria plataforma.
+
+<h1>Modelo que usaremos no projeto</h1>
+<h2>Fonte</h2>               <h2>Gratuito</h2>               <h2>Monetização</h2>
+Treinos                       Básico                          Treinos personalizados no Premium
+Alimentação                   Registro básico                 Recursos avançados no Premium
+Competição                    Desafios básicos                Desafios/recursos especiais
+Anúncios                      Sim                             Removidos no Premium
+Parcerias                             —                       Empresas pagam pela divulgação/benefícios
+Marketplace                           —                       Comissão sobre vendas
+Profissionais                         —                       Comissão por contratação
+
+A principal fonte de receita seria a assinatura Premium, enquanto publicidade, parcerias e comissões funcionariam como fontes complementares.
+Uma lógica importante para o BioForm é que o usuário não vai precisar pagar para começar. Ele pode conhecer o aplicativo gratuitamente e, conforme passa a usar mais recursos e se envolver com os desafios e acompanhamento, decide se vale a pena assinar.
+
+
