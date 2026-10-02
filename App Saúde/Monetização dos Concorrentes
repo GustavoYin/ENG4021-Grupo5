@@ -1,0 +1,180 @@
+1. MyFitnessPal
+O modelo é essencialmente freemium.
+A versão gratuita permite utilizar parte relevante do acompanhamento alimentar, enquanto funcionalidades mais avançadas são utilizadas como incentivo à contratação do Premium.
+As principais fontes são:
+
+Assinatura Premium — receita recorrente mensal/anual;
+Publicidade — principalmente para usuários da versão gratuita;
+Funcionalidades premium — recursos mais avançados de planejamento, análise e acompanhamento;
+Parcerias/ecossistema — integração com outros serviços e dispositivos pode ampliar o valor comercial da plataforma.
+Estratégia: oferecer bastante valor gratuitamente para criar uma grande base de usuários e converter uma parcela deles em assinantes.
+
+2. FatSecret
+O FatSecret combina versão gratuita + publicidade + recursos pagos.
+As principais fontes de receita são:
+
+Anúncios exibidos para usuários gratuitos;
+Premium — recursos adicionais mediante pagamento;
+Parcerias comerciais;
+Soluções para empresas e marcas, aproveitando a base de dados e o ecossistema nutricional.
+Um aspecto interessante do modelo é que o diário alimentar e o banco de alimentos funcionam como mecanismos de aquisição e retenção: quanto mais o usuário registra suas refeições, mais valor ele obtém do aplicativo.
+Estratégia: maximizar a base gratuita e monetizar através de publicidade e conversão para recursos pagos.
+
+3. Strava
+O Strava tem um modelo bastante baseado em assinatura recorrente.
+A plataforma disponibiliza funcionalidades básicas gratuitamente e utiliza recursos avançados para estimular a assinatura.
+A monetização envolve:
+
+Assinatura Strava;
+Recursos avançados de análise de desempenho;
+Segmentos, desafios e funcionalidades de treinamento;
+Recursos voltados para atletas mais engajados;
+Parcerias e integrações com marcas e equipamentos esportivos.
+O ponto importante aqui é o efeito de rede social.
+Mais usuários → mais atividades → mais interação social → maior valor da plataforma → maior potencial de conversão para assinatura.
+
+4. Nike Training Club
+Esse é um caso bastante diferente.
+O Nike Training Club não precisa necessariamente monetizar cada usuário diretamente através do aplicativo.
+A plataforma funciona também como parte do ecossistema Nike.
+A monetização pode acontecer de forma indireta através de:
+
+Fortalecimento da marca;
+Aquisição e retenção de consumidores;
+Venda de produtos Nike;
+Relacionamento com usuários interessados em fitness;
+Integração com outros serviços e produtos do ecossistema Nike.
+Ou seja, o aplicativo pode ser entendido como um canal de relacionamento e aquisição, e não simplesmente como um produto SaaS que precisa gerar receita por assinatura.
+Insight para o seu projeto: nem todo aplicativo fitness precisa cobrar diretamente do usuário para gerar valor econômico.
+
+5. Freeletics
+O Freeletics utiliza principalmente o modelo de assinatura.
+A proposta é oferecer uma experiência inicial que permite ao usuário conhecer o produto e posteriormente cobrar pelo acesso a recursos mais avançados.
+A monetização está relacionada principalmente a:
+
+Planos de treinamento personalizados;
+Treinos e programas premium;
+Personalização;
+Adaptação dos treinos ao desempenho;
+Recursos de inteligência/personalização;
+Assinaturas recorrentes.
+É um modelo interessante porque o produto tem uma percepção de valor relativamente clara:
+"Pague para receber um plano de treinamento mais personalizado."
+Isso facilita a conversão de usuários que percebem benefício direto na personalização.
+
+6. Strong / Hevy
+Aplicativos como Strong e Hevy geralmente utilizam um modelo freemium.
+O usuário consegue registrar seus treinos gratuitamente, mas determinadas funcionalidades são reservadas para usuários Premium.
+A monetização normalmente está relacionada a:
+Assinatura Premium;
+Recursos avançados de histórico;
+Gráficos e análises;
+Maior capacidade de criação/gerenciamento de rotinas;
+Recursos avançados de acompanhamento de evolução;
+Experiência sem limitações da versão gratuita.
+O modelo é particularmente interessante para aplicativos de musculação porque existe uma característica de alta frequência de uso.
+Um usuário que treina 3–5 vezes por semana tem muitas oportunidades de interagir com o aplicativo, o que aumenta a possibilidade de conversão para assinatura.
+
+7. Wellhub / Gympass
+O modelo do Wellhub é substancialmente diferente dos aplicativos anteriores.
+Ele funciona principalmente como um B2B2C:
+Empresa → Wellhub → usuário → academias/serviços parceiros
+Em vez de depender exclusivamente de usuários individuais pagando diretamente pelo aplicativo, a plataforma trabalha com empresas que oferecem o benefício aos funcionários.
+As fontes de receita estão relacionadas a:
+
+Contratos com empresas;
+Mensalidades/planos;
+Utilização da rede de parceiros;
+Serviços de bem-estar;
+Relacionamento comercial com academias, estúdios e outros estabelecimentos.
+Nesse caso, existe uma segunda parte importante do modelo:
+Wellhub → parceiros
+A plataforma agrega demanda para academias e serviços de bem-estar e, em contrapartida, estabelece relações comerciais com esses parceiros.
+Esse modelo cria um marketplace de dois lados:
+Demanda: usuários/funcionários;
+Oferta: academias, estúdios, serviços e profissionais.
+
+8. Google Fit / Apple Saúde
+Aqui temos outro modelo diferente.
+Google Fit e Apple Saúde não precisam necessariamente ser monetizados como um aplicativo independente.
+Eles fazem parte de ecossistemas maiores.
+A monetização acontece principalmente de maneira indireta, através de:
+
+Venda de smartphones;
+Relógios e wearables;
+Serviços digitais;
+Assinaturas do ecossistema;
+Integração com outros aplicativos;
+Retenção de usuários dentro do ecossistema;
+Desenvolvimento de novos produtos e serviços.
+Por exemplo, no caso da Apple, os dados de saúde e atividade física podem aumentar o valor percebido de produtos como Apple Watch e serviços relacionados.
+
+Portanto:
+O aplicativo não necessariamente precisa gerar receita diretamente; ele pode aumentar a receita de outros produtos do ecossistema.
+
+Comparação dos modelos
+Para o BioForm, os concorrentes em 5 grandes modelos de monetização:
+
+1. Freemium + assinatura
+Exemplos:
+
+MyFitnessPal
+Freeletics
+Strong
+Hevy
+Strava
+
+Funcionamento:
+
+Usuário gratuito → experimentação → percebe valor → assinatura Premium
+
+É provavelmente o modelo mais comum entre aplicativos fitness independentes.
+
+2. Freemium + publicidade
+Exemplo:
+
+FatSecret
+
+Funcionamento:
+
+Usuário gratuito → anúncios → receita publicitária
+
+E uma parcela dos usuários pode posteriormente migrar para uma versão paga.
+
+3. B2B / benefício corporativo
+Exemplo:
+
+Wellhub
+
+Funcionamento:
+
+Empresa paga → funcionários utilizam → plataforma distribui receita/valor para parceiros
+
+Esse modelo permite obter uma receita potencialmente maior por contrato, mas exige uma estrutura comercial B2B.
+
+4. Marketplace / comissão
+Exemplo mais claro:
+
+Wellhub
+
+A plataforma conecta:
+
+usuários ↔ estabelecimentos/profissionais
+
+A monetização pode ocorrer através da relação comercial e dos pagamentos associados à utilização dos serviços.
+
+5. Monetização indireta pelo ecossistema
+Exemplos:
+
+Nike Training Club
+
+Google Fit
+
+Apple Saúde
+
+Funcionamento:
+
+Aplicativo → engajamento → relacionamento → venda de outros produtos/serviços
+
+É um modelo particularmente interessante para empresas que já possuem uma grande operação de hardware, varejo ou serviços digitais.
+
