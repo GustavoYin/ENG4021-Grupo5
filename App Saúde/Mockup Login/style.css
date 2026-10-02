@@ -565,6 +565,25 @@ form { display: grid; gap: 18px; }
 .m-gord b { color: var(--green); }  .m-gord .bar span { background: var(--green); }
 .m-agua b { color: var(--water); }  .m-agua .bar span { background: var(--water); }
 
+.pratica {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line-strong);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.info {
+  margin-top: 16px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--text-2);
+  background: var(--water-soft);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: var(--radius);
+}
+.info strong { display: block; color: var(--water); margin-bottom: 2px; }
+
 .disclaimer { font-size: 13px; color: var(--text-3); margin-top: 16px; }
 
 /* Botões Voltar / Continuar */
