@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suas metas (4/4) | BioForm Health OS</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <span class="step-label">Passo <b>4</b> de 4</span>
+    </div>
+    <div class="progress"><span style="width: 100%"></span></div>
+  </header>
+
+  <!--
+    MOCKUP: os valores abaixo são um exemplo fixo (não há cálculo nem dados salvos).
+    Perfil de exemplo: masculino, 28 anos, 78,5 kg, 178 cm, objetivo perder peso,
+    musculação 5x/semana (intensa) + corrida 2x/semana (moderada).
+
+    Fórmulas usadas (para a versão real):
+    - TMB (Mifflin-St Jeor), homens:   10 x peso + 6,25 x altura - 5 x idade + 5
+                             mulheres: 10 x peso + 6,25 x altura - 5 x idade - 161
+      -> 10 x 78,5 + 6,25 x 178 - 5 x 28 + 5 = 1.763 kcal
+    - TDEE = TMB + gasto dos esportes + atividade diária (NEAT + efeito térmico)
+      -> 1.763 + 430 + 487 = 2.680 kcal
+    - Meta = TDEE + ajuste do objetivo (-500 perder | 0 manter | +400 ganhar)
+      -> 2.680 - 500 = 2.180 kcal
+    - Proteína 2,1 g/kg -> 165 g (660 kcal) | Gordura 0,8 g/kg -> 62 g (558 kcal)
+    - Carboidrato = calorias restantes / 4 -> (2.180 - 660 - 558) / 4 = 240 g
+    - Água 35 ml/kg -> 78,5 x 35 = 2.750 ml (11 copos de 250 ml)
+  -->
+
+  <main class="onb-main">
+    <h1>Suas metas estão prontas!</h1>
+    <p class="subtitle">Calculamos tudo a partir do seu perfil. Veja de onde vem cada número.</p>
+
+    <!-- Resumo do perfil usado no cálculo -->
+    <section class="block">
+      <h2 class="block-title">Perfil usado no cálculo</h2>
+      <p class="block-sub">Algo errado? Volte e ajuste.</p>
+      <div class="chips">
+        <span class="tag tag-water">Masculino · 28 anos</span>
+        <span class="tag tag-water">78,5 kg · 178 cm</span>
+        <span class="tag tag-violet">Mesomorfo</span>
+        <span class="tag tag-flame">Perder peso</span>
+        <span class="tag tag-green">Musculação 5x · Intensa</span>
+        <span class="tag tag-green">Corrida 2x · Moderada</span>
+      </div>
+      <p class="disclaimer"><a href="perfil-1-dados.html">Editar dados</a> · <a href="perfil-2-objetivo.html">Editar objetivo</a> · <a href="perfil-3-esportes.html">Editar esportes</a></p>
+    </section>
+
+    <!-- Conta das calorias -->
+    <section class="block">
+      <h2 class="block-title">Como sua meta foi calculada</h2>
+      <div class="calc">
+        <div class="calc-row">
+          <div><span>Metabolismo basal (TMB)</span><small>Mifflin-St Jeor · 78,5 kg, 178 cm, 28 anos</small></div>
+          <b>1.763 kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto dos esportes</span><small>5x musculação intensa + 2x corrida moderada</small></div>
+          <b class="plus">+430 kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Atividade diária e digestão</span><small>NEAT + efeito térmico dos alimentos</small></div>
+          <b class="plus">+487 kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto diário total (TDEE)</span><small>Quanto você gasta por dia</small></div>
+          <b>2.680 kcal</b>
+        </div>
+        <div class="calc-row total">
+          <div><span>Seu objetivo: perder peso</span><small>Déficit moderado e seguro</small></div>
+          <b class="minus">−500 kcal</b>
+        </div>
+      </div>
+    </section>
+
+    <div class="goal">
+      <div>
+        <small>Meta diária sugerida</small>
+        <strong>2.180 <span>kcal</span></strong>
+      </div>
+      <span class="tag tag-flame">🔥 Déficit de 500 kcal</span>
+    </div>
+
+    <!-- Macros e água -->
+    <section class="block">
+      <h2 class="block-title">Metas diárias</h2>
+      <p class="block-sub">Divisão das calorias entre os macronutrientes, mais a sua hidratação.</p>
+      <div class="macros">
+        <div class="macro m-prot">
+          <div class="macro-head"><strong>Proteínas</strong><b>165 g</b></div>
+          <small>2,1 g/kg · preservação e construção muscular · 30% das kcal</small>
+          <div class="bar"><span style="width: 30%"></span></div>
+        </div>
+        <div class="macro m-carb">
+          <div class="macro-head"><strong>Carboidratos</strong><b>240 g</b></div>
+          <small>Calorias restantes da meta · energia para o treino · 44% das kcal</small>
+          <div class="bar"><span style="width: 44%"></span></div>
+        </div>
+        <div class="macro m-gord">
+          <div class="macro-head"><strong>Gorduras boas</strong><b>62 g</b></div>
+          <small>0,8 g/kg · regulação hormonal e saciedade · 26% das kcal</small>
+          <div class="bar"><span style="width: 26%"></span></div>
+        </div>
+        <div class="macro m-agua">
+          <div class="macro-head"><strong>💧 Água</strong><b>2.750 ml</b></div>
+          <small>35 ml/kg · 11 copos de 250 ml por dia</small>
+          <div class="bar"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+      <p class="disclaimer">Estimativa pela equação de Mifflin-St Jeor e referências de macros por kg. Não substitui nutricionista ou médico.</p>
+    </section>
+
+    <div class="actions">
+      <a href="perfil-3-esportes.html" class="btn btn-ghost">Voltar</a>
+      <!-- Próximo mockup: Painel inicial -->
+      <a href="#" class="btn btn-primary">Começar a usar o BioForm</a>
+    </div>
+  </main>
+
+</body>
+</html>

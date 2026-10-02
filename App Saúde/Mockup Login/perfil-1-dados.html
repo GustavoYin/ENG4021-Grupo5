@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu perfil (1/4) | BioForm Health OS</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <span class="step-label">Passo <b>1</b> de 4</span>
+    </div>
+    <div class="progress"><span style="width: 25%"></span></div>
+  </header>
+
+  <main class="onb-main">
+    <h1>Vamos montar seu perfil</h1>
+    <p class="subtitle">Com esses dados calculamos suas metas de treino, dieta e hidratação.</p>
+
+    <form action="perfil-2-objetivo.html">
+
+      <!-- Identidade -->
+      <section class="block">
+        <h2 class="block-title">Sobre você</h2>
+        <p class="block-sub">Seu apelido aparece no ranking e nos grupos com amigos.</p>
+
+        <div class="avatar">
+          <div class="avatar-circle">+</div>
+          <div>
+            <label for="foto">Foto de perfil (opcional)</label>
+            <input type="file" id="foto" accept="image/*">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="apelido">Como quer ser chamado?</label>
+            <input type="text" id="apelido" placeholder="Ex.: Edson" maxlength="20" required>
+          </div>
+          <div class="field">
+            <label for="nascimento">Data de nascimento</label>
+            <input type="date" id="nascimento" min="1920-01-01" max="2012-12-31" required>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sexo biológico -->
+      <section class="block">
+        <h2 class="block-title">Sexo biológico</h2>
+        <p class="block-sub">Usado apenas no cálculo do metabolismo basal (TMB).</p>
+        <div class="chips">
+          <label class="choice">
+            <input type="radio" name="sexo" value="masculino" required>
+            <span class="choice-body">Masculino</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="sexo" value="feminino">
+            <span class="choice-body">Feminino</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Medidas -->
+      <section class="block">
+        <h2 class="block-title">Medidas atuais</h2>
+        <p class="block-sub">Seu peso vira o primeiro ponto do gráfico de evolução.</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="peso">Peso atual</label>
+            <div class="suffix">
+              <input type="number" id="peso" placeholder="78,5" min="30" max="300" step="0.1" inputmode="decimal" required>
+              <em>kg</em>
+            </div>
+          </div>
+          <div class="field">
+            <label for="altura">Altura</label>
+            <div class="suffix">
+              <input type="number" id="altura" placeholder="178" min="100" max="250" step="1" inputmode="numeric" required>
+              <em>cm</em>
+            </div>
+          </div>
+        </div>
+        <div class="field" style="margin-top: 18px;">
+          <label for="peso-meta">Peso desejado (opcional)</label>
+          <div class="suffix">
+            <input type="number" id="peso-meta" placeholder="74" min="30" max="300" step="0.1" inputmode="decimal">
+            <em>kg</em>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Continuar</button>
+      </div>
+    </form>
+  </main>
+
+</body>
+</html>
