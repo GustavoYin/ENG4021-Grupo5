@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | BioForm Health OS</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+
+    <!-- Painel da marca (some no celular) -->
+    <section class="hero">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <h2 class="hero-title">Seu treino, sua dieta, seu ciclo, <b>seu ritmo</b>.</h2>
+      <ul class="hero-list">
+        <li><span class="dot dot-flame"></span>Treinos com cargas reais e ofensiva diária</li>
+        <li><span class="dot dot-green"></span>Dieta e macros calculados para a sua meta</li>
+        <li><span class="dot dot-violet"></span>Desafios e ranking com seus amigos</li>
+      </ul>
+    </section>
+
+    <!-- Formulário -->
+    <section class="content">
+      <div class="card">
+
+        <div class="brand brand-mobile">
+          <img src="logo.svg" alt="Logo BioForm">
+          <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+        </div>
+
+        <!-- Aparece quando o usuário vem do cadastro (login.html#conta-criada) -->
+        <div class="alert" id="conta-criada">
+          <span class="icon">✓</span>
+          <div><strong>Conta criada com sucesso!</strong>Agora é só entrar com seu e-mail ou CPF e sua senha.</div>
+        </div>
+
+        <h1>Bem-vindo de volta</h1>
+        <p class="subtitle">Entre para continuar no seu ritmo.</p>
+
+        <form action="#">
+          <div class="field">
+            <label for="usuario">E-mail ou CPF</label>
+            <input type="text" id="usuario" placeholder="voce@email.com" autocomplete="username" required>
+          </div>
+
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password" minlength="8" required>
+          </div>
+
+          <div class="options">
+            <label class="check"><input type="checkbox"> Lembrar de mim</label>
+            <a href="esqueci-senha.html">Esqueci minha senha</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Entrar</button>
+
+          <div class="divider">ou</div>
+
+          <a href="cadastro.html" class="btn btn-ghost">Criar uma conta</a>
+        </form>
+
+        <p class="footer-text">Ainda não tem conta? <a href="cadastro.html">Cadastre-se grátis</a></p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
