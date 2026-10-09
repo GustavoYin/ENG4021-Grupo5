@@ -1,10 +1,25 @@
-1. DOMÍNIO DE IDENTIDADE E PERFIL FIXO
+MODELAGEM DE DADOS - BIOFORM
+Implementada em Django em: BioForm/Banco de Dados (app "saude", arquivo models.py)
+Itens marcados com (Novo) foram acrescentados para cobrir cadastro, perfil, registro de treinos,
+diário alimentar e ranking por grupo (Requisitos funcionais, mockups e Documento de Regras de Negócio).
+
+1. DOMÍNIO DE IDENTIDADE E PERFIL
 
 Tabela: usuarios
 
 id (UUID, Primary Key)
 
+conta (Foreign Key 1:1 -> usuário de login do Django) (Novo) -> E-mail e senha ficam na conta do Django.
+
 nome_completo (String)
+
+apelido (String, Opcional) (Novo) -> "Como quer ser chamado?"
+
+cpf (String, 11 dígitos, Único) (Novo) -> Login por "E-mail ou CPF".
+
+celular (String) (Novo)
+
+aceitou_termos (Boolean) (Novo)
 
 data_nascimento (Date) -> Para calcular a idade automaticamente.
 
@@ -12,11 +27,35 @@ sexo_biologico (Enum: Masculino, Feminino)
 
 altura_cm (Int) -> Geralmente fixa para adultos.
 
+peso_meta_kg (Decimal, Opcional) (Novo) -> "Peso desejado".
+
 biotipo (Enum: Ectomorfo, Mesomorfo, Endomorfo)
 
 avatar_url (String)
 
 data_cadastro (Timestamp)
+
+Tabela: esportes (Novo - catálogo)
+
+id (UUID, Primary Key)
+
+nome (String, Único) -> Musculação, Corrida, Ciclismo, Natação, Funcional, Futebol, Lutas, Yoga, Vôlei, Futevôlei
+
+met (Decimal) -> Gasto energético de referência, usado no cálculo do gasto dos esportes.
+
+Tabela: esportes_usuario (Novo - perfil passo 3 "Sua rotina esportiva")
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key -> usuarios)
+
+esporte_id (UUID, Foreign Key -> esportes)
+
+frequencia_semanal (Int, 1 a 7) -> 7 = diário.
+
+intensidade (Enum: Leve, Moderada, Intensa, Máxima)
+
+(Um mesmo esporte só uma vez por usuário)
 
 2. DOMÍNIO DE EVOLUÇÃO (O Histórico de Gráficos)
 
@@ -30,15 +69,15 @@ data_registro (Timestamp) -> O eixo X do gráfico de evolução.
 
 peso_kg (Decimal) -> O eixo Y do gráfico.
 
-objetivo_momento (Enum: Emagrecimento, Hipertrofia, Manutenção)
+objetivo_momento (Enum: Emagrecimento, Manutenção, Hipertrofia, Saúde) -> "Saúde" (Novo), presente no mockup.
 
 foto_shape_url (String, Nullable) -> Opcional: foto do shape na data do peso.
 
 (Removido: Todas as medidas de circunferência)
 
-3. DOMÍNIO DE NUTRIÇÃO (Com Refeições Personalizadas )
+3. DOMÍNIO DE NUTRIÇÃO
 
-Tabela: metas_nutricionais
+Tabela: metas_nutricionais -> Resultado do cálculo (TMB + gasto dos esportes + ajuste do objetivo)
 
 id (UUID, Primary Key)
 
@@ -52,7 +91,7 @@ meta_calorias (Int)
 
 meta_proteina_g, meta_carbo_g, meta_gordura_g (Decimals)
 
-Tabela: catalogo_alimentos (Banco Central)
+Tabela: catalogo_alimentos (Banco Central) -> Populada com 591 alimentos da TACO/UNICAMP
 
 id (UUID, Primary Key)
 
@@ -60,9 +99,21 @@ nome (String)
 
 porcao_padrao (String) -> Ex: "100g", "1 Colher de Sopa"
 
-kcal, proteina_g, carbo_g, gordura_g (Decimals)
+porcao_gramas (Decimal) (Novo) -> Quantos gramas tem a porção padrão (100 na TACO).
 
-Tabela: refeicoes_personalizadas (Novo! - Os combos do usuário)
+kcal, proteina_g, carbo_g, gordura_g (Decimals) -> Valores de UMA porção padrão.
+
+Tabela: medidas_caseiras (Novo - registro por porções do dia a dia)
+
+id (UUID, Primary Key)
+
+alimento_id (UUID, Foreign Key -> catalogo_alimentos)
+
+nome (String) -> Ex: "1 colher de sopa", "1 concha", "1 fatia"
+
+gramas (Decimal) -> Ex: 25.0
+
+Tabela: refeicoes_personalizadas (Os combos do usuário)
 
 id (UUID, Primary Key)
 
@@ -92,7 +143,35 @@ total_agua_consumida_ml (Int) -> Soma dos cliques no copo d'água.
 
 status_dieta_cumprida (Boolean) -> O botão de "Check-in" de sucesso.
 
-4. DOMÍNIO DE TREINO E VOLUME DE CARGA (Diário Maromba)
+(Um registro por usuário por dia)
+
+Tabela: registros_refeicao (Novo - cada refeição comida no dia)
+
+id (UUID, Primary Key)
+
+diario_id (UUID, Foreign Key -> diario_consumo)
+
+tipo_refeicao (Enum: Café da manhã, Lanche da manhã, Almoço, Lanche da tarde, Jantar, Ceia)
+
+horario (Timestamp)
+
+refeicao_personalizada_id (UUID, Foreign Key, Nullable) -> Preenchido quando lançada a partir de um combo.
+
+Tabela: registros_refeicao_itens (Novo - o que foi comido em cada refeição)
+
+id (UUID, Primary Key)
+
+registro_id (UUID, Foreign Key -> registros_refeicao)
+
+alimento_id (UUID, Foreign Key -> catalogo_alimentos)
+
+medida_caseira_id (UUID, Foreign Key -> medidas_caseiras, Nullable) -> Se vazio, conta em porções padrão.
+
+quantidade (Decimal) -> Ex: 3 (colheres) ou 1.5 (porções)
+
+(Cálculo: gramas = quantidade x gramas da medida; macros = valores da porção x gramas / porcao_gramas)
+
+4. DOMÍNIO DE TREINO E ATIVIDADES (Diário Maromba + outros esportes)
 
 Tabela: fichas_treino
 
@@ -101,6 +180,8 @@ id (UUID, Primary Key)
 usuario_id (UUID, Foreign Key)
 
 nome_ficha (String) -> Ex: "Treino A - Peito e Ombro"
+
+dia_semana (Enum: Seg a Dom, Opcional) (Novo) -> Planejamento semanal.
 
 Tabela: exercicios_ficha
 
@@ -112,13 +193,37 @@ nome_exercicio (String) -> Ex: "Supino Inclinado com Halteres"
 
 ordem_execucao (Int)
 
+series_planejadas (Int) (Novo) -> Ex: 4
+
+repeticoes_planejadas (Int) (Novo) -> Ex: 10
+
+Tabela: sessoes_atividade (Novo - o treino/partida feito de verdade, de qualquer esporte)
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+esporte_id (UUID, Foreign Key -> esportes)
+
+ficha_id (UUID, Foreign Key -> fichas_treino, Nullable) -> Em treinos de musculação.
+
+inicio (Timestamp)
+
+duracao_minutos (Int) -> Regra de XP: mínimo de 20 minutos; usado no anti-spam.
+
+intensidade (Enum: Leve, Moderada, Intensa, Máxima)
+
+distancia_km (Decimal, Nullable) -> Corrida, ciclismo, natação.
+
 Tabela: series_executadas_historico (Onde fica salva a carga)
 
 id (UUID, Primary Key)
 
+sessao_id (UUID, Foreign Key -> sessoes_atividade) (Novo) -> A data do treino vem da sessão.
+
 exercicio_id (UUID, Foreign Key -> exercicios_ficha)
 
-data_treino (Timestamp)
+numero_serie (Int) (Novo) -> 1ª, 2ª, 3ª série...
 
 carga_kg (Decimal) -> O peso que o aluno levantou hoje.
 
@@ -130,14 +235,93 @@ Tabela: perfil_gamificacao
 
 id (UUID, Primary Key)
 
-usuario_id (UUID, Foreign Key)
+usuario_id (UUID, Foreign Key, 1 por usuário)
 
 streak_atual (Int) -> Ofensiva de dias (foguinho 🔥).
 
-pontos_experiencia (Int) -> A pontuação que define quem ganha no grupo.
+pontos_experiencia (Int) -> XP vitalício: nunca zera e define o nível (Semente, Bronze, Prata, Ouro, Diamante).
+
+escudos_descanso (Int) (Novo) -> 1 escudo a cada 15 dias de ofensiva.
+
+ultimo_dia_ativo (Date, Nullable) (Novo) -> Para saber se a ofensiva continua.
+
+Tabela: historico_xp (Novo - cada ganho de XP; a soma da semana forma o Ranking da Galera)
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+acao (Enum: Treino +50, Atividade secundária +20, Recorde pessoal +30, Check-in de refeição +10,
+      Dieta perfeita +40, Meta de água +15, Combo saúde +30)
+
+pontos (Int) -> Já com a penalidade de 50% para check-in retroativo.
+
+data_referencia (Date) -> Dia a que os pontos pertencem (ranking semanal de segunda a domingo).
+
+criado_em (Timestamp)
+
+sessao_id (UUID, Foreign Key -> sessoes_atividade, Nullable)
+
+refeicao_id (UUID, Foreign Key -> registros_refeicao, Nullable)
 
 Tabela: amizades
+
+id (UUID, Primary Key) -> O Django exige uma chave primária própria.
 
 usuario_id_1 (UUID, Foreign Key)
 
 usuario_id_2 (UUID, Foreign Key)
+
+(Sem par repetido e sem amizade consigo mesmo)
+
+Tabela: grupos (Novo - grupos privados com amigos)
+
+id (UUID, Primary Key)
+
+nome (String)
+
+descricao (Texto, Opcional)
+
+criador_id (UUID, Foreign Key -> usuarios)
+
+codigo_convite (String, Único)
+
+data_criacao (Timestamp)
+
+Tabela: membros_grupo (Novo)
+
+id (UUID, Primary Key)
+
+grupo_id (UUID, Foreign Key -> grupos)
+
+usuario_id (UUID, Foreign Key -> usuarios)
+
+papel (Enum: Administrador, Membro)
+
+data_entrada (Timestamp)
+
+Tabela: desafios (Novo - desafios personalizáveis dentro do grupo)
+
+id (UUID, Primary Key)
+
+grupo_id (UUID, Foreign Key -> grupos)
+
+criador_id (UUID, Foreign Key -> usuarios)
+
+nome (String) -> Ex: "Quem treina mais em outubro"
+
+descricao (Texto, Opcional)
+
+metrica (Enum: Mais XP, Mais treinos/partidas, Mais dias de dieta perfeita, Mais dias com meta de água)
+
+data_inicio, data_fim (Date) -> data_fim não pode ser antes de data_inicio.
+
+Tabela: participantes_desafio (Novo)
+
+id (UUID, Primary Key)
+
+desafio_id (UUID, Foreign Key -> desafios)
+
+usuario_id (UUID, Foreign Key -> usuarios)
+
+data_entrada (Timestamp)
