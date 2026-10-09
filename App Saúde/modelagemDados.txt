@@ -1,0 +1,143 @@
+1. DOMÍNIO DE IDENTIDADE E PERFIL FIXO
+
+Tabela: usuarios
+
+id (UUID, Primary Key)
+
+nome_completo (String)
+
+data_nascimento (Date) -> Para calcular a idade automaticamente.
+
+sexo_biologico (Enum: Masculino, Feminino)
+
+altura_cm (Int) -> Geralmente fixa para adultos.
+
+biotipo (Enum: Ectomorfo, Mesomorfo, Endomorfo)
+
+avatar_url (String)
+
+data_cadastro (Timestamp)
+
+2. DOMÍNIO DE EVOLUÇÃO (O Histórico de Gráficos)
+
+Tabela: historico_medidas
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key -> usuarios)
+
+data_registro (Timestamp) -> O eixo X do gráfico de evolução.
+
+peso_kg (Decimal) -> O eixo Y do gráfico.
+
+objetivo_momento (Enum: Emagrecimento, Hipertrofia, Manutenção)
+
+foto_shape_url (String, Nullable) -> Opcional: foto do shape na data do peso.
+
+(Removido: Todas as medidas de circunferência)
+
+3. DOMÍNIO DE NUTRIÇÃO (Com Refeições Personalizadas )
+
+Tabela: metas_nutricionais
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+data_inicio (Date)
+
+meta_agua_ml (Int)
+
+meta_calorias (Int)
+
+meta_proteina_g, meta_carbo_g, meta_gordura_g (Decimals)
+
+Tabela: catalogo_alimentos (Banco Central)
+
+id (UUID, Primary Key)
+
+nome (String)
+
+porcao_padrao (String) -> Ex: "100g", "1 Colher de Sopa"
+
+kcal, proteina_g, carbo_g, gordura_g (Decimals)
+
+Tabela: refeicoes_personalizadas (Novo! - Os combos do usuário)
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+nome_refeicao (String) -> Ex: "Vitamina Pós-Treino" ou "Café da Manhã Padrão"
+
+Tabela: refeicoes_personalizadas_itens (O que vai dentro do combo)
+
+id (UUID, Primary Key)
+
+refeicao_personalizada_id (UUID, Foreign Key)
+
+alimento_id (UUID, Foreign Key -> catalogo_alimentos)
+
+quantidade_multiplicador (Decimal) -> Ex: 2.0 (Duas porções daquele alimento)
+
+Tabela: diario_consumo (O dia a dia real)
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+data_referencia (Date) -> Ex: 2026-09-09
+
+total_agua_consumida_ml (Int) -> Soma dos cliques no copo d'água.
+
+status_dieta_cumprida (Boolean) -> O botão de "Check-in" de sucesso.
+
+4. DOMÍNIO DE TREINO E VOLUME DE CARGA (Diário Maromba)
+
+Tabela: fichas_treino
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+nome_ficha (String) -> Ex: "Treino A - Peito e Ombro"
+
+Tabela: exercicios_ficha
+
+id (UUID, Primary Key)
+
+ficha_id (UUID, Foreign Key)
+
+nome_exercicio (String) -> Ex: "Supino Inclinado com Halteres"
+
+ordem_execucao (Int)
+
+Tabela: series_executadas_historico (Onde fica salva a carga)
+
+id (UUID, Primary Key)
+
+exercicio_id (UUID, Foreign Key -> exercicios_ficha)
+
+data_treino (Timestamp)
+
+carga_kg (Decimal) -> O peso que o aluno levantou hoje.
+
+repeticoes (Int)
+
+5. DOMÍNIO DE GAMIFICAÇÃO SOCIAL (Gymrats)
+
+Tabela: perfil_gamificacao
+
+id (UUID, Primary Key)
+
+usuario_id (UUID, Foreign Key)
+
+streak_atual (Int) -> Ofensiva de dias (foguinho 🔥).
+
+pontos_experiencia (Int) -> A pontuação que define quem ganha no grupo.
+
+Tabela: amizades
+
+usuario_id_1 (UUID, Foreign Key)
+
+usuario_id_2 (UUID, Foreign Key)
