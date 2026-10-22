@@ -1,0 +1,26 @@
+{% extends 'saude/base_app.html' %}
+{% block titulo %}Excluir conta{% endblock %}
+{% block corpo %}
+  <main class="page">
+    {% url 'conta' as url_conta %}
+    {% include 'saude/_voltar.html' with destino=url_conta texto='Editar perfil' %}
+
+    <header class="page-head">
+      <h1 class="page-title">Excluir conta</h1>
+      <p class="page-sub">Esta ação apaga a conta de {{ usuario.nome_completo }} e não pode ser desfeita.</p>
+    </header>
+
+    <form method="post" class="section danger">
+      {% csrf_token %}
+      <h2 class="section-title">O que será apagado</h2>
+      <p class="section-hint">Perfil, medidas, metas, treinos, refeições, XP, grupos que você criou e participações em desafios.</p>
+      <div class="grid">
+        {% include 'saude/_campo_app.html' with campo=form.senha classe='full' %}
+      </div>
+      <div class="danger-row" style="margin-top: 16px;">
+        <a href="{{ url_conta }}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir minha conta</button>
+      </div>
+    </form>
+  </main>
+{% endblock %}

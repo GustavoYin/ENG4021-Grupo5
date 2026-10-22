@@ -1,0 +1,79 @@
+/* =========================================================
+   BioForm — complementos para as telas ligadas ao Django.
+   Carregado depois de acesso.css (login/cadastro/perfil) ou de
+   usuarios.css (editar perfil/listagem). Usa as variáveis de cor deles.
+   ========================================================= */
+
+/* ---------- Erros que voltam do servidor ---------- */
+.errorlist {
+  list-style: none;
+  font-size: 13px;
+  color: var(--danger);
+}
+/* Vence o "verde = válido" do acesso.css: o HTML aceitou, mas o servidor recusou */
+.field:has(.errorlist) input,
+.field:has(.errorlist) input:not(:placeholder-shown):valid,
+.field:has(.errorlist) .input { border-color: var(--danger); box-shadow: none; }
+
+.form-erros {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(248, 113, 113, 0.45);
+  background: rgba(248, 113, 113, 0.10);
+  color: var(--danger);
+  font-size: 14px;
+}
+.form-erros .errorlist { font-size: 14px; }
+
+/* ---------- Mensagens (messages framework) ---------- */
+.mensagens { display: grid; gap: 10px; margin-bottom: 24px; }
+.msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--green-soft);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+.msg::before { content: "✓"; color: var(--green); font-weight: 800; }
+.msg.error {
+  background: rgba(248, 113, 113, 0.10);
+  border-color: rgba(248, 113, 113, 0.45);
+}
+.msg.error::before { content: "!"; color: var(--danger); }
+
+/* ---------- Menu do topo (perfil já preenchido) ---------- */
+.top-nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.top-nav a,
+.top-nav button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  text-decoration: none;
+}
+.top-nav a:hover,
+.top-nav button:hover { color: var(--text); background: var(--surface-2); }
+.top-nav a.ativo { color: var(--flame); }
+.top-nav form { display: inline; }
+
+/* ---------- Página 404 ---------- */
+.erro-codigo { font-size: 64px; font-weight: 800; line-height: 1; color: var(--flame); margin-bottom: 12px; }
+
+/* ---------- Listagem: botão ao lado do título alinhado com ele ---------- */
+.page-head-row > .btn { margin-bottom: 20px; }
+
+/* ---------- Editar perfil: links para os passos do perfil ---------- */
+.links-perfil { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+@media (max-width: 640px) {
+  .onb-top-inner { flex-wrap: wrap; gap: 8px; }
+}

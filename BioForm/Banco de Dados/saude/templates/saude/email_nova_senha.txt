@@ -1,0 +1,11 @@
+{% autoescape off %}Olá, {{ user.first_name|default:user.email }}!
+
+Recebemos um pedido para criar uma nova senha na sua conta BioForm.
+Para escolher a nova senha, abra o link abaixo:
+
+{{ protocol }}://{{ domain }}{% url 'senha_nova' uidb64=uid token=token %}
+
+Se não foi você, ignore este e-mail: sua senha continua a mesma.
+
+Equipe BioForm
+{% endautoescape %}

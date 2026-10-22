@@ -1,0 +1,64 @@
+{% extends 'saude/base_perfil.html' %}
+{% block titulo %}Seu perfil (1/4){% endblock %}
+{% block conteudo %}
+    <h1>{% if onboarding %}Vamos montar seu perfil{% else %}Seus dados{% endif %}</h1>
+    <p class="subtitle">Com esses dados calculamos suas metas de treino, dieta e hidratação.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      {% include 'saude/_erros_gerais.html' %}
+
+      <!-- Identidade -->
+      <section class="block">
+        <h2 class="block-title">Sobre você</h2>
+        <p class="block-sub">Seu apelido aparece no ranking e nos grupos com amigos.</p>
+        <div class="grid-2">
+          {% include 'saude/_campo.html' with campo=form.apelido %}
+          {% include 'saude/_campo.html' with campo=form.data_nascimento %}
+        </div>
+      </section>
+
+      <!-- Sexo biológico -->
+      <section class="block">
+        <h2 class="block-title">Sexo biológico</h2>
+        <p class="block-sub">Usado apenas no cálculo do metabolismo basal (TMB).</p>
+        <div class="chips">
+          {% for valor, nome in form.fields.sexo_biologico.choices %}
+          <label class="choice">
+            <input type="radio" name="{{ form.sexo_biologico.html_name }}" value="{{ valor }}" required{% if form.sexo_biologico.value == valor %} checked{% endif %}>
+            <span class="choice-body">{{ nome }}</span>
+          </label>
+          {% endfor %}
+        </div>
+        {{ form.sexo_biologico.errors }}
+      </section>
+
+      <!-- Medidas -->
+      <section class="block">
+        <h2 class="block-title">Medidas atuais</h2>
+        <p class="block-sub">Seu peso vira {% if onboarding %}o primeiro{% else %}um novo{% endif %} ponto do gráfico de evolução.</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="{{ form.peso_kg.id_for_label }}">{{ form.peso_kg.label }}</label>
+            <div class="suffix">{{ form.peso_kg }}<em>kg</em></div>
+            {{ form.peso_kg.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.altura_cm.id_for_label }}">{{ form.altura_cm.label }}</label>
+            <div class="suffix">{{ form.altura_cm }}<em>cm</em></div>
+            {{ form.altura_cm.errors }}
+          </div>
+        </div>
+        <div class="field" style="margin-top: 18px;">
+          <label for="{{ form.peso_meta_kg.id_for_label }}">{{ form.peso_meta_kg.label }}</label>
+          <div class="suffix">{{ form.peso_meta_kg }}<em>kg</em></div>
+          {{ form.peso_meta_kg.errors }}
+        </div>
+      </section>
+
+      <div class="actions">
+        {% if not onboarding %}<a href="{% url 'perfil_metas' %}" class="btn btn-ghost">Cancelar</a>{% endif %}
+        <button type="submit" class="btn btn-primary">{% if onboarding %}Continuar{% else %}Salvar e recalcular metas{% endif %}</button>
+      </div>
+    </form>
+{% endblock %}
