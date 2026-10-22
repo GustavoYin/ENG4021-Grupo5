@@ -1,0 +1,27 @@
+{% extends 'saude/base_acesso.html' %}
+{% block titulo %}Entrar{% endblock %}
+{% block conteudo %}
+        <h1>Bem-vindo de volta</h1>
+        <p class="subtitle">Entre para continuar no seu ritmo.</p>
+
+        <form method="post">
+          {% csrf_token %}
+          {% include 'saude/_erros_gerais.html' %}
+          {% include 'saude/_campo.html' with campo=form.username %}
+          {% include 'saude/_campo.html' with campo=form.password %}
+
+          <div class="options">
+            <label class="check">{{ form.lembrar }} Lembrar de mim</label>
+            <a href="{% url 'senha_esqueci' %}">Esqueci minha senha</a>
+          </div>
+
+          <input type="hidden" name="next" value="{{ next }}">
+          <button type="submit" class="btn btn-primary">Entrar</button>
+
+          <div class="divider">ou</div>
+
+          <a href="{% url 'cadastro' %}" class="btn btn-ghost">Criar uma conta</a>
+        </form>
+
+        <p class="footer-text">Ainda não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se grátis</a></p>
+{% endblock %}

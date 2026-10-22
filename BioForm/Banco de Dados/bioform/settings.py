@@ -121,3 +121,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Login (telas em saude/templates/saude)
+# O backend do BioForm aceita e-mail ou CPF; o ModelBackend mantém o login do admin pelo username.
+AUTHENTICATION_BACKENDS = [
+    'saude.backends.EmailOuCPFBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+LOGIN_URL = 'entrar'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'entrar'
+
+# Em desenvolvimento os e-mails (ex.: link de nova senha) são impressos no terminal do runserver
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'BioForm <nao-responda@bioform.local>'

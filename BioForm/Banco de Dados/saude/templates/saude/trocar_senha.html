@@ -1,0 +1,32 @@
+{% extends 'saude/base_app.html' %}
+{% block titulo %}Trocar senha{% endblock %}
+{% block corpo %}
+  <main class="page">
+    {% url 'conta' as url_conta %}
+    {% include 'saude/_voltar.html' with destino=url_conta texto='Editar perfil' %}
+
+    <header class="page-head">
+      <h1 class="page-title">Trocar senha</h1>
+      <p class="page-sub">Confirme a senha atual e escolha uma nova.</p>
+    </header>
+
+    <form method="post" id="form-senha">
+      {% csrf_token %}
+      <fieldset class="section">
+        <legend>Senha</legend>
+        <div class="grid">
+          {% include 'saude/_campo_app.html' with campo=form.old_password classe='full' %}
+          {% include 'saude/_campo_app.html' with campo=form.new_password1 dica='Mínimo de 8 caracteres, sem ser só números.' %}
+          {% include 'saude/_campo_app.html' with campo=form.new_password2 %}
+        </div>
+      </fieldset>
+    </form>
+  </main>
+
+  <div class="action-bar">
+    <div class="action-bar-inner">
+      <a href="{{ url_conta }}" class="btn btn-secondary">Cancelar</a>
+      <button type="submit" form="form-senha" class="btn btn-primary">Salvar nova senha</button>
+    </div>
+  </div>
+{% endblock %}
