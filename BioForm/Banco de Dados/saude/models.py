@@ -7,6 +7,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.db import models
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
+from django.utils import timezone
 
 
 # Campo de chave primária usado em todas as tabelas (UUID, conforme modelagemDados.txt)
@@ -61,15 +62,22 @@ class Usuario(models.Model):
     )
     celular = models.CharField(max_length=15)
     aceitou_termos = models.BooleanField(default=False)
-    data_nascimento = models.DateField()  # usada para calcular a idade
+    # Os campos abaixo são preenchidos no onboarding (perfil passos 1 e 2), por isso
+    # ficam vazios entre o cadastro da conta e o fim do onboarding.
+    data_nascimento = models.DateField(null=True, blank=True)  # usada para calcular a idade
     sexo_biologico = models.CharField(
         max_length=10,
+        blank=True,
         choices={
             'masculino': 'Masculino',
             'feminino': 'Feminino',
         },
     )
-    altura_cm = models.IntegerField(validators=[MinValueValidator(100), MaxValueValidator(250)])
+    altura_cm = models.IntegerField(
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(100), MaxValueValidator(250)],
+    )
     peso_meta_kg = models.DecimalField(  # "Peso desejado (opcional)"
         max_digits=5,
         decimal_places=2,
@@ -78,6 +86,7 @@ class Usuario(models.Model):
     )
     biotipo = models.CharField(
         max_length=10,
+        blank=True,
         choices={
             'ectomorfo': 'Ectomorfo',
             'mesomorfo': 'Mesomorfo',
@@ -86,6 +95,20 @@ class Usuario(models.Model):
     )
     avatar_url = models.URLField(max_length=2000, blank=True)
     data_cadastro = models.DateTimeField(auto_now_add=True)
+
+    def idade(self, hoje=None):
+        if not self.data_nascimento:
+            return None
+        hoje = hoje or timezone.localdate()
+        fez_aniversario = (hoje.month, hoje.day) >= (self.data_nascimento.month, self.data_nascimento.day)
+        return hoje.year - self.data_nascimento.year - (0 if fez_aniversario else 1)
+
+    def medida_atual(self):
+        """Último peso registrado (o ponto mais recente do gráfico de evolução)."""
+        return self.historicomedida_set.order_by('-data_registro').first()
+
+    def meta_atual(self):
+        return self.metanutricional_set.order_by('-data_inicio').first()
 
     def __str__(self):
         return self.apelido or self.nome_completo

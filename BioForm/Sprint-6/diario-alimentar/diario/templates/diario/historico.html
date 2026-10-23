@@ -1,0 +1,34 @@
+{% extends 'contas/base_perfil.html' %}
+{% load static bioform diario_tags %}
+{% block titulo %}Histórico alimentar{% endblock %}
+{% block estilos_extra %}<link rel="stylesheet" href="{% static 'diario/css/diario.css' %}">{% endblock %}
+{% block conteudo %}
+    <p class="dia-links"><a href="{% url 'diario_hoje' %}">‹ Voltar ao diário de hoje</a></p>
+    <h1>Histórico alimentar</h1>
+    <p class="subtitle">Últimos {{ dias|length }} dias: quanto você comeu e bebeu em relação à meta.</p>
+
+    <section class="block">
+      <table class="tabela-historico">
+        <thead>
+          <tr>
+            <th scope="col">Dia</th>
+            <th scope="col">Calorias</th>
+            <th scope="col">Proteína</th>
+            <th scope="col">Água</th>
+            <th scope="col">Dieta</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in dias %}
+          <tr>
+            <td data-label="Dia"><a href="{% url 'diario_dia' d.data %}">{{ d.data|nome_do_dia }}</a></td>
+            <td data-label="Calorias">{% if d.tem_itens %}{{ d.total.kcal|inteiro|milhar }} <small>/ {{ d.meta.meta_calorias|milhar }} · {{ d.percentual_kcal }}%</small>{% else %}<small>—</small>{% endif %}</td>
+            <td data-label="Proteína">{% if d.tem_itens %}{{ d.total.proteina_g|inteiro }} g <small>/ {{ d.meta.meta_proteina_g|inteiro }} g</small>{% else %}<small>—</small>{% endif %}</td>
+            <td data-label="Água">{% if d.agua_ml %}{{ d.agua_ml|milhar }} ml{% if d.meta_agua_atingida %} <span class="tag tag-water">meta</span>{% endif %}{% else %}<small>—</small>{% endif %}</td>
+            <td data-label="Dieta">{% if d.dieta_confirmada %}<span class="tag tag-green">✓ perfeita</span>{% elif d.dentro_da_meta %}<span class="tag tag-water">na meta</span>{% elif d.tem_itens %}<small>fora da meta</small>{% else %}<small>sem registro</small>{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+{% endblock %}

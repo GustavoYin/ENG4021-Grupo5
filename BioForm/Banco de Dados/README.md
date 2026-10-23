@@ -4,6 +4,9 @@ Tabelas criadas a partir de `App Saúde/modelagemDados.txt`, seguindo a aula
 *Atividade 03 — Modelagem de Dados*. Projeto Django `bioform`, app `saude`
 (as tabelas estão em `saude/models.py` e as telas do admin em `saude/admin.py`).
 
+O app `contas` (login, cadastro e perfil) também fica aqui. Os apps `diario`, `medidas_caseiras` e
+`metas` ficam nas pastas de `BioForm/Sprint-6` e são carregados por `bioform/settings.py`.
+
 | Domínio | Tabelas |
 |---|---|
 | Identidade e perfil | `usuarios`, `esportes`, `esportes_usuario` |
@@ -19,14 +22,14 @@ cd "BioForm/Banco de Dados"
 python -m venv .venv
 .venv\Scripts\activate          # Windows  (Linux/Mac/Replit: source .venv/bin/activate)
 pip install -r requirements.txt
-python manage.py migrate        # cria as tabelas e já popula alimentos e esportes
+python manage.py migrate        # cria as tabelas e já popula alimentos, esportes e medidas caseiras
 python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Admin: http://127.0.0.1:8000/admin/
+Site: http://127.0.0.1:8000/ · Admin: http://127.0.0.1:8000/admin/
 
-Testes: `python manage.py test saude`
+Testes: `python manage.py test saude contas diario medidas_caseiras metas`
 
 ## Dados que já vêm carregados
 
@@ -50,12 +53,12 @@ Rodar `migrate` de novo não duplica nada (cada registro tem UUID fixo).
 - Um diário de consumo por usuário por dia; um perfil de gamificação por usuário.
 - Amizade sem par repetido e sem amizade consigo mesmo; um esporte só uma vez por perfil.
 - Desafio não pode terminar antes de começar; CPF com 11 números.
+- Nascimento, sexo, altura e biotipo podem ficar vazios no banco (migração `0004`), porque a conta é
+  criada antes do perfil ser preenchido.
 - `RegistroRefeicaoItem.macros()` calcula kcal e macros do que foi comido (em medida caseira ou porção).
 - `Grupo.ranking_semanal(dia)` ordena os membros pelo XP da semana (segunda a domingo).
 - `PerfilGamificacao.nivel()` devolve o patamar (Semente, Bronze, Prata, Ouro, Diamante).
 
 ## Ainda falta
 
-- **Medidas caseiras**: a tabela existe, mas está vazia. É preciso cadastrar os gramas de cada
-  porção (colher, concha, fatia), de preferência a partir de uma tabela de medidas caseiras de referência.
 - Não modelados: diário de bem-estar (humor, dores, sono) e lembretes (RF16).

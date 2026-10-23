@@ -10,10 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Apps da Sprint 6: cada tarefa fica na sua pasta em BioForm/Sprint-6
+SPRINT_6 = BASE_DIR.parent / 'Sprint-6'
+for pasta in ('diario-alimentar', 'medidas-caseiras', 'calculadora-metas'):
+    sys.path.insert(0, str(SPRINT_6 / pasta))
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'saude',
+    'contas',            # login, cadastro e perfil
+    'medidas_caseiras',  # Sprint-6/medidas-caseiras
+    'metas',             # Sprint-6/calculadora-metas
+    'diario',            # Sprint-6/diario-alimentar
 ]
 
 MIDDLEWARE = [
@@ -121,3 +131,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Login (app contas)
+# O backend do BioForm aceita e-mail ou CPF; o ModelBackend mantém o login do admin pelo username.
+AUTHENTICATION_BACKENDS = [
+    'contas.backends.EmailOuCPFBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+LOGIN_URL = 'entrar'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'entrar'
+
+# Em desenvolvimento os e-mails (ex.: link de nova senha) são impressos no terminal do runserver
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'BioForm <nao-responda@bioform.local>'

@@ -1,0 +1,28 @@
+{% extends 'contas/base_acesso.html' %}
+{% block titulo %}Nova senha{% endblock %}
+{% block conteudo %}
+  {% if validlink %}
+        <h1>Crie uma nova senha</h1>
+        <p class="subtitle">Escolha uma senha que você ainda não usou no BioForm.</p>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="field">
+            <label for="id_new_password1">Nova senha</label>
+            <input type="password" name="new_password1" id="id_new_password1" placeholder="Crie uma senha" autocomplete="new-password" minlength="8" required>
+            <span class="hint">Mínimo de 8 caracteres.</span>
+            {{ form.new_password1.errors }}
+          </div>
+          <div class="field">
+            <label for="id_new_password2">Confirmar senha</label>
+            <input type="password" name="new_password2" id="id_new_password2" placeholder="Repita a senha" autocomplete="new-password" minlength="8" required>
+            {{ form.new_password2.errors }}
+          </div>
+          <button type="submit" class="btn btn-primary">Salvar nova senha</button>
+        </form>
+  {% else %}
+        <h1>Link inválido</h1>
+        <p class="subtitle">Este link de recuperação já foi usado ou expirou. Peça um novo.</p>
+        <a href="{% url 'senha_esqueci' %}" class="btn btn-primary">Pedir novo link</a>
+  {% endif %}
+{% endblock %}
