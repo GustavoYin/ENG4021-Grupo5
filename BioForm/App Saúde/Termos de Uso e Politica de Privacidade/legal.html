@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ titulo }} | BioForm Health OS</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <a href="{{ url_for('cadastro') }}" class="step-label">Voltar ao cadastro</a>
+    </div>
+  </header>
+
+  <main class="onb-main legal">
+    <h1>{{ titulo }}</h1>
+    <p class="subtitle">Última atualização: {{ atualizado_em }}</p>
+
+    <p class="legal-aviso">Texto de exemplo do projeto acadêmico. Deve ser revisado antes de qualquer uso real.</p>
+
+    {% for titulo_secao, paragrafos in secoes %}
+    <section class="block">
+      <h2 class="block-title">{{ titulo_secao }}</h2>
+      {% for p in paragrafos %}<p>{{ p }}</p>
+      {% endfor %}
+    </section>
+    {% endfor %}
+
+    <p class="legal-links">
+      <a href="{{ url_for('termos') }}">Termos de Uso</a> · <a href="{{ url_for('privacidade') }}">Política de Privacidade</a>
+    </p>
+  </main>
+
+</body>
+</html>
