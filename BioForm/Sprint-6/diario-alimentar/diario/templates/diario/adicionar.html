@@ -1,0 +1,96 @@
+{% extends 'contas/base_perfil.html' %}
+{% load static bioform diario_tags %}
+{% block titulo %}Adicionar alimento{% endblock %}
+{% block estilos_extra %}<link rel="stylesheet" href="{% static 'diario/css/diario.css' %}">{% endblock %}
+{% block conteudo %}
+    <p class="dia-links"><a href="{% if eh_hoje %}{% url 'diario_hoje' %}{% else %}{% url 'diario_dia' data %}{% endif %}">‹ Voltar ao diário de {{ data|nome_do_dia|lower }}</a></p>
+    <h1>Adicionar alimento</h1>
+    <p class="subtitle">Busque no catálogo TACO e registre do jeito que você come: colher, concha, fatia ou gramas.</p>
+
+    {% if alimento %}
+    <!-- Quanto comeu do alimento escolhido -->
+    <section class="block escolhido">
+      <h2 class="block-title">{{ alimento.nome }}</h2>
+      <p class="block-sub">Em 100 g: {{ alimento.kcal|inteiro }} kcal · P {{ alimento.proteina_g|decimal_br }} g · C {{ alimento.carbo_g|decimal_br }} g · G {{ alimento.gordura_g|decimal_br }} g</p>
+      <form method="post" class="form-item">
+        {% csrf_token %}
+        <input type="hidden" name="alimento" value="{{ alimento.id }}">
+        {% include 'contas/_erros_gerais.html' %}
+        <div class="grid-2">
+          <div class="field">
+            <label for="{{ form.medida.id_for_label }}">{{ form.medida.label }}</label>
+            {{ form.medida }}
+            {{ form.medida.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.quantidade.id_for_label }}">{{ form.quantidade.label }}</label>
+            {{ form.quantidade }}
+            <span class="hint">Em gramas, se escolheu "Gramas"; senão, quantas medidas.</span>
+            {{ form.quantidade.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <label for="{{ form.tipo_refeicao.id_for_label }}">{{ form.tipo_refeicao.label }}</label>
+          {{ form.tipo_refeicao }}
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar ao diário</button>
+      </form>
+    </section>
+    {% endif %}
+
+    <!-- Busca -->
+    <section class="block">
+      <form method="get" class="form-linha">
+        <input type="hidden" name="refeicao" value="{{ tipo }}">
+        <input type="search" name="q" value="{{ busca }}" placeholder="Ex.: arroz, feijao, banana" aria-label="Buscar alimento"{% if not alimento %} autofocus{% endif %}>
+        <button class="btn-mini destaque">Buscar</button>
+      </form>
+
+      {% if busca %}
+        <h2 class="block-title lista-titulo">Resultados para "{{ busca }}"</h2>
+        {% include 'diario/_lista_alimentos.html' with alimentos=resultados %}
+        {% if not resultados %}<p class="block-sub">Nada encontrado. Tente uma palavra só, como "frango" ou "pão".</p>{% endif %}
+      {% elif recentes %}
+        <h2 class="block-title lista-titulo">Usados recentemente</h2>
+        {% include 'diario/_lista_alimentos.html' with alimentos=recentes %}
+      {% endif %}
+    </section>
+
+    <!-- Combos -->
+    <section class="block">
+      <h2 class="block-title">Seus combos</h2>
+      {% if combos %}
+        <p class="block-sub">Lança todos os alimentos do combo de uma vez.</p>
+        <ul class="itens">
+          {% for combo in combos %}
+          <li class="item">
+            <div class="item-info">
+              <strong>{{ combo.nome_refeicao }}</strong>
+              <small>{% for i in combo.itens.all %}{{ i.alimento.nome }}{% if not forloop.last %} · {% endif %}{% endfor %}</small>
+            </div>
+            <span class="item-kcal">{{ combo.total.kcal|inteiro }} kcal</span>
+            <form method="post" action="{% url 'diario_usar_combo' data %}" class="form-inline">
+              {% csrf_token %}
+              <input type="hidden" name="combo" value="{{ combo.id }}">
+              <input type="hidden" name="tipo_refeicao" value="{{ tipo }}">
+              <button class="btn-mini destaque">Usar</button>
+            </form>
+            <form method="post" action="{% url 'diario_excluir_combo' combo.id %}" class="form-inline">
+              {% csrf_token %}
+              <input type="hidden" name="voltar" value="{{ request.get_full_path }}">
+              <button class="btn-remover" aria-label="Excluir combo {{ combo.nome_refeicao }}">×</button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+        <p class="hint">Os combos entram em: <b>{% for valor, nome in tipos %}{% if valor == tipo %}{{ nome }}{% endif %}{% endfor %}</b>. Para outra refeição, escolha abaixo.</p>
+      {% else %}
+        <p class="block-sub">Ainda não há combos. No diário, registre uma refeição e use "Salvar esta refeição como combo".</p>
+      {% endif %}
+      <div class="chips refeicoes-chips">
+        {% for valor, nome in tipos %}
+        <a href="?refeicao={{ valor }}{% if busca %}&amp;q={{ busca|urlencode }}{% endif %}{% if alimento %}&amp;alimento={{ alimento.id }}{% endif %}" class="tag {% if valor == tipo %}tag-flame{% else %}tag-neutra{% endif %}">{{ nome }}</a>
+        {% endfor %}
+      </div>
+    </section>
+{% endblock %}

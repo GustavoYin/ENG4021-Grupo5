@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   {% block estilos %}<link rel="stylesheet" href="{% static 'contas/css/acesso.css' %}">{% endblock %}
   <link rel="stylesheet" href="{% static 'contas/css/complementos.css' %}">
+  {% block estilos_extra %}{% endblock %}
 </head>
 <body{% block body_classe %}{% endblock %}>
 {% block corpo %}{% endblock %}

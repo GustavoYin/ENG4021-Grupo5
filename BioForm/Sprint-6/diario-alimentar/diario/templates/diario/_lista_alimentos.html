@@ -1,0 +1,11 @@
+{% load diario_tags %}
+<ul class="resultados">
+  {% for a in alimentos %}
+  <li>
+    <a href="?refeicao={{ tipo }}{% if busca %}&amp;q={{ busca|urlencode }}{% endif %}&amp;alimento={{ a.id }}" class="resultado{% if alimento and alimento.id == a.id %} ativo{% endif %}">
+      <span>{{ a.nome }}</span>
+      <small>{{ a.kcal|inteiro }} kcal/100 g{% if a.qtd_medidas %} · {{ a.qtd_medidas }} medida{{ a.qtd_medidas|pluralize }} caseira{{ a.qtd_medidas|pluralize }}{% endif %}</small>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

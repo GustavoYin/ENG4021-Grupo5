@@ -1,0 +1,110 @@
+/* =========================================================
+   BioForm — Diário alimentar. Usa as variáveis e componentes do
+   acesso.css (block, goal, macros, tag, btn).
+   ========================================================= */
+
+/* ---------- Navegação entre os dias ---------- */
+.dia-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.dia-titulo { text-align: center; }
+.dia-titulo h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.dia-titulo small { color: var(--text-3); font-size: 13px; }
+.dia-seta {
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 26px; font-weight: 700; line-height: 1;
+  color: var(--text); background: var(--surface); border: 1px solid var(--line-strong);
+}
+.dia-seta:hover { background: var(--surface-2); text-decoration: none; }
+.dia-seta.desativada { color: var(--text-3); opacity: .4; }
+.dia-links { margin: 12px 0 24px; text-align: center; font-size: 14px; color: var(--text-3); }
+.onb-main > .dia-links:first-child { text-align: left; margin-top: 0; }
+
+/* ---------- Botões pequenos e formulários em linha ---------- */
+.onb-main form.form-inline { display: inline; }
+.onb-main form.form-linha { display: flex; gap: 10px; align-items: center; }
+.form-linha input {
+  flex: 1; min-width: 0; height: 44px; padding: 0 14px;
+  font: inherit; font-size: 15px; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 12px; outline: none;
+}
+.form-linha input:focus { border-color: var(--flame); box-shadow: 0 0 0 4px var(--flame-soft); }
+
+.btn-mini {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; padding: 0 14px; border-radius: 10px;
+  font: inherit; font-size: 13px; font-weight: 700; white-space: nowrap;
+  color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); cursor: pointer;
+}
+.btn-mini:hover { border-color: var(--text-3); text-decoration: none; }
+.btn-mini.destaque { color: #fff; background: var(--flame); border-color: var(--flame); }
+.btn-mini.destaque:hover { background: var(--flame-hover); }
+.btn-mini.fraco { color: var(--text-2); background: transparent; }
+
+.btn-remover {
+  width: 32px; height: 32px; border-radius: 50%;
+  font: inherit; font-size: 18px; line-height: 1; color: var(--text-3);
+  background: transparent; border: 1px solid transparent; cursor: pointer;
+}
+.btn-remover:hover { color: var(--danger); border-color: rgba(248, 113, 113, 0.45); }
+
+/* ---------- Água ---------- */
+.agua-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+/* ---------- Refeições ---------- */
+.refeicao-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.refeicao-total { font-size: 13px; color: var(--text-3); }
+.itens { list-style: none; margin-top: 14px; }
+.item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-top: 1px solid var(--line);
+}
+.item-info { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.item-info strong { font-size: 14px; font-weight: 600; }
+.item-info small { font-size: 12px; color: var(--text-3); }
+.item-kcal { font-size: 14px; font-weight: 700; white-space: nowrap; }
+
+.salvar-combo { margin-top: 12px; font-size: 13px; }
+.salvar-combo summary { cursor: pointer; color: var(--text-2); font-weight: 600; }
+.salvar-combo summary:hover { color: var(--text); }
+.salvar-combo form { margin-top: 10px; }
+
+/* ---------- Adicionar alimento ---------- */
+.escolhido { border-color: var(--flame-line); }
+.onb-main form.form-item { display: grid; gap: 16px; }
+.form-item .field { align-content: start; }
+.field select {
+  width: 100%; height: 50px; padding: 0 14px;
+  font: inherit; font-size: 15px; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  outline: none; color-scheme: dark;
+}
+.field select:focus { border-color: var(--flame); box-shadow: 0 0 0 4px var(--flame-soft); }
+
+.lista-titulo { margin-top: 20px; }
+.resultados { list-style: none; margin-top: 8px; }
+.resultado {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 10px; margin: 0 -10px; border-radius: 12px;
+  color: var(--text); font-weight: 500;
+}
+.resultado:hover { background: var(--surface-2); text-decoration: none; }
+.resultado.ativo { background: var(--flame-soft); }
+.resultado small { color: var(--text-3); font-size: 12px; white-space: nowrap; }
+
+.refeicoes-chips { margin-top: 14px; }
+.tag-neutra { color: var(--text-2); background: var(--surface-2); }
+.tag-neutra:hover { color: var(--text); text-decoration: none; }
+
+/* ---------- Histórico ---------- */
+.tabela-historico { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabela-historico th { text-align: left; font-size: 12px; font-weight: 600; color: var(--text-3); padding: 0 8px 10px; }
+.tabela-historico td { padding: 12px 8px; border-top: 1px solid var(--line); vertical-align: middle; }
+.tabela-historico small { color: var(--text-3); }
+
+@media (max-width: 640px) {
+  .tabela-historico thead { display: none; }
+  .tabela-historico tr { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .tabela-historico td { border: 0; padding: 0; }
+  .tabela-historico td::before { content: attr(data-label); display: block; font-size: 11px; color: var(--text-3); }
+  .refeicao-head { flex-direction: column; }
+}
