@@ -1,0 +1,38 @@
+{% extends 'contas/base_acesso.html' %}
+{% block titulo %}Criar conta{% endblock %}
+{% block hero_titulo %}Comece hoje. <b>Evolua todo dia.</b>{% endblock %}
+{% block hero_lista %}
+        <li><span class="dot dot-flame"></span>Monte suas fichas de treino em minutos</li>
+        <li><span class="dot dot-green"></span>Acompanhe dieta, água e bem-estar</li>
+        <li><span class="dot dot-violet"></span>Conquiste selos e suba no ranking</li>
+{% endblock %}
+{% block conteudo %}
+        <h1>Crie sua conta</h1>
+        <p class="subtitle">Seu treino, sua dieta, seu ciclo, <b>seu ritmo</b>.</p>
+
+        <!-- Ao enviar, cria a conta e segue para o onboarding (cadastro do perfil) -->
+        <form method="post">
+          {% csrf_token %}
+          {% include 'contas/_erros_gerais.html' %}
+          {% include 'contas/_campo.html' with campo=form.nome_completo %}
+
+          <div class="row">
+            {% include 'contas/_campo.html' with campo=form.cpf %}
+            {% include 'contas/_campo.html' with campo=form.celular %}
+          </div>
+
+          {% include 'contas/_campo.html' with campo=form.email %}
+          {% include 'contas/_campo.html' with campo=form.senha dica="Mínimo de 8 caracteres." %}
+          {% include 'contas/_campo.html' with campo=form.confirmar %}
+
+          <label class="check">
+            {{ form.aceitou_termos }}
+            <span>Li e aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a></span>
+          </label>
+          {{ form.aceitou_termos.errors }}
+
+          <button type="submit" class="btn btn-primary">Criar conta</button>
+        </form>
+
+        <p class="footer-text">Já tem uma conta? <a href="{% url 'entrar' %}">Entrar</a></p>
+{% endblock %}

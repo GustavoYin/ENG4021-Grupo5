@@ -1,0 +1,19 @@
+{% extends 'contas/base_acesso.html' %}
+{% block titulo %}Esqueci minha senha{% endblock %}
+{% block conteudo %}
+        <h1>Esqueci minha senha</h1>
+        <p class="subtitle">Informe o e-mail da sua conta e enviaremos um link para você criar uma nova senha.</p>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="field">
+            <label for="id_email">E-mail</label>
+            <input type="email" name="email" id="id_email" placeholder="voce@email.com" autocomplete="email" maxlength="254" required value="{{ form.email.value|default:'' }}">
+            {{ form.email.errors }}
+          </div>
+
+          <button type="submit" class="btn btn-primary">Enviar link de recuperação</button>
+        </form>
+
+        <p class="footer-text">Lembrou a senha? <a href="{% url 'entrar' %}">Entrar</a></p>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'contas/base.html' %}
+{% comment %}Layout do onboarding (perfil-1 a perfil-4). Depois do onboarding, o topo vira um menu.{% endcomment %}
+{% block body_classe %} class="onb"{% endblock %}
+{% block corpo %}
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      {% include 'contas/_marca.html' %}
+      {% if onboarding %}
+        <span class="step-label">Passo <b>{{ passo }}</b> de 4</span>
+      {% else %}
+        <nav class="top-nav" aria-label="Menu">
+          <a href="{% url 'perfil_metas' %}"{% if passo == 4 %} class="ativo"{% endif %}>Metas</a>
+          <a href="{% url 'conta' %}">Editar perfil</a>
+          {% if user.is_staff %}<a href="{% url 'usuarios' %}">Usuários</a>{% endif %}
+          <form method="post" action="{% url 'sair' %}">{% csrf_token %}<button type="submit">Sair</button></form>
+        </nav>
+      {% endif %}
+    </div>
+    {% if onboarding %}
+      <div class="progress"><span style="width: {% widthratio passo 4 100 %}%"></span></div>
+    {% endif %}
+  </header>
+
+  <main class="onb-main">
+    {% include 'contas/_mensagens.html' %}
+    {% block conteudo %}{% endblock %}
+  </main>
+{% endblock %}
