@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seus esportes (3/4) | BioForm Health OS</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <span class="step-label">Passo <b>3</b> de 4</span>
+    </div>
+    <div class="progress"><span style="width: 75%"></span></div>
+  </header>
+
+  <main class="onb-main">
+    <h1>Sua rotina esportiva</h1>
+    <p class="subtitle">Marque o que você pratica. Para cada esporte, informe a frequência e a intensidade.</p>
+
+    <form action="perfil-4-resultado.html">
+
+      <!-- Esportes praticados (marcar um esporte mostra a configuração dele logo abaixo) -->
+      <section class="block">
+        <h2 class="block-title">O que você pratica?</h2>
+        <p class="block-sub">Pode marcar mais de um.</p>
+        <div class="chips">
+          <label class="choice">
+            <input type="checkbox" id="esp-musculacao" checked>
+            <span class="choice-body">🏋️ Musculação</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-corrida" checked>
+            <span class="choice-body">🏃 Corrida</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-ciclismo">
+            <span class="choice-body">🚴 Ciclismo</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-natacao">
+            <span class="choice-body">🏊 Natação</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-funcional">
+            <span class="choice-body">🔥 Funcional / Crossfit</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-futebol">
+            <span class="choice-body">⚽ Futebol</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-lutas">
+            <span class="choice-body">🥊 Lutas</span>
+          </label>
+          <label class="choice">
+            <input type="checkbox" id="esp-yoga">
+            <span class="choice-body">🧘 Yoga / Pilates</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Frequência e intensidade de cada esporte (aparecem via CSS :has) -->
+      <section class="block sport-cfg cfg-musculacao">
+        <h2 class="block-title">🏋️ Musculação</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-musculacao" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="5x" checked><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-musculacao" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-musculacao" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-musculacao" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-musculacao" value="intensa" checked><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-musculacao" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-corrida">
+        <h2 class="block-title">🏃 Corrida</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-corrida" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="2x" checked><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-corrida" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-corrida" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-corrida" value="moderada" checked><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-corrida" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-corrida" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-ciclismo">
+        <h2 class="block-title">🚴 Ciclismo</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-ciclismo" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-ciclismo" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-ciclismo" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-ciclismo" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-ciclismo" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-natacao">
+        <h2 class="block-title">🏊 Natação</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-natacao" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-natacao" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-natacao" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-natacao" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-natacao" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-natacao" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-funcional">
+        <h2 class="block-title">🔥 Funcional / Crossfit</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-funcional" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-funcional" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-funcional" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-funcional" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-funcional" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-funcional" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-futebol">
+        <h2 class="block-title">⚽ Futebol</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-futebol" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-futebol" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-futebol" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-futebol" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-futebol" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-futebol" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-lutas">
+        <h2 class="block-title">🥊 Lutas</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-lutas" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-lutas" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-lutas" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-lutas" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-lutas" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-lutas" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <section class="block sport-cfg cfg-yoga">
+        <h2 class="block-title">🧘 Yoga / Pilates</h2>
+        <p class="cfg-label">Quantas vezes por semana?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="freq-yoga" value="1x"><span class="choice-body">1x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="2x"><span class="choice-body">2x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="3x"><span class="choice-body">3x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="4x"><span class="choice-body">4x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="5x"><span class="choice-body">5x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="6x"><span class="choice-body">6x</span></label>
+          <label class="choice"><input type="radio" name="freq-yoga" value="Diário"><span class="choice-body">Diário</span></label>
+        </div>
+        <p class="cfg-label">Qual a intensidade?</p>
+        <div class="chips">
+          <label class="choice"><input type="radio" name="int-yoga" value="leve"><span class="choice-body">Leve</span></label>
+          <label class="choice"><input type="radio" name="int-yoga" value="moderada"><span class="choice-body">Moderada</span></label>
+          <label class="choice"><input type="radio" name="int-yoga" value="intensa"><span class="choice-body">Intensa</span></label>
+          <label class="choice"><input type="radio" name="int-yoga" value="máxima"><span class="choice-body">Máxima</span></label>
+        </div>
+      </section>
+
+      <div class="actions">
+        <a href="perfil-2-objetivo.html" class="btn btn-ghost">Voltar</a>
+        <button type="submit" class="btn btn-primary">Calcular minhas metas</button>
+      </div>
+    </form>
+  </main>
+
+</body>
+</html>

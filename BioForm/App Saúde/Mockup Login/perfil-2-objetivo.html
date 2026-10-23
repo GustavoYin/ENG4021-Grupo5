@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu objetivo (2/4) | BioForm Health OS</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <span class="step-label">Passo <b>2</b> de 4</span>
+    </div>
+    <div class="progress"><span style="width: 50%"></span></div>
+  </header>
+
+  <main class="onb-main">
+    <h1>Qual é o seu objetivo?</h1>
+    <p class="subtitle">Ele define se sua meta de calorias terá déficit, equilíbrio ou superávit.</p>
+
+    <form action="perfil-3-esportes.html">
+
+      <!-- Biotipo -->
+      <section class="block">
+        <h2 class="block-title">Biotipo corporal</h2>
+        <p class="block-sub">Escolha o que mais se parece com você.</p>
+        <div class="grid-3">
+          <label class="choice">
+            <input type="radio" name="biotipo" value="ectomorfo" required>
+            <span class="choice-body">
+              <span class="emoji">🏃</span>
+              <strong>Ectomorfo</strong>
+              <small>Magro, metabolismo rápido, dificuldade para ganhar peso</small>
+            </span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="biotipo" value="mesomorfo">
+            <span class="choice-body">
+              <span class="emoji">💪</span>
+              <strong>Mesomorfo</strong>
+              <small>Atlético, ganha músculo com facilidade</small>
+            </span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="biotipo" value="endomorfo">
+            <span class="choice-body">
+              <span class="emoji">🏋️</span>
+              <strong>Endomorfo</strong>
+              <small>Estrutura maior, ganha peso com facilidade</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Objetivo principal -->
+      <section class="block">
+        <h2 class="block-title">Objetivo principal</h2>
+        <p class="block-sub">Você pode mudar isso depois em Configurações.</p>
+        <div class="stack">
+          <label class="choice choice-row">
+            <input type="radio" name="objetivo" value="emagrecimento" required>
+            <span class="choice-body">
+              <div><strong>Perder peso &amp; definição</strong><small>Déficit calórico moderado para queimar gordura</small></div>
+              <span class="tag tag-flame">−500 kcal</span>
+            </span>
+          </label>
+          <label class="choice choice-row">
+            <input type="radio" name="objetivo" value="manutencao">
+            <span class="choice-body">
+              <div><strong>Manutenção &amp; recomposição</strong><small>Normocalórica, trocar gordura por massa magra</small></div>
+              <span class="tag tag-water">Equilíbrio</span>
+            </span>
+          </label>
+          <label class="choice choice-row">
+            <input type="radio" name="objetivo" value="hipertrofia">
+            <span class="choice-body">
+              <div><strong>Ganhar peso &amp; hipertrofia</strong><small>Superávit controlado para construir músculos</small></div>
+              <span class="tag tag-violet">+400 kcal</span>
+            </span>
+          </label>
+          <label class="choice choice-row">
+            <input type="radio" name="objetivo" value="saude">
+            <span class="choice-body">
+              <div><strong>Comer melhor &amp; longevidade</strong><small>Qualidade dos nutrientes e consistência na rotina</small></div>
+              <span class="tag tag-green">Saúde 100%</span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <div class="actions">
+        <a href="perfil-1-dados.html" class="btn btn-ghost">Voltar</a>
+        <button type="submit" class="btn btn-primary">Continuar</button>
+      </div>
+    </form>
+  </main>
+
+</body>
+</html>

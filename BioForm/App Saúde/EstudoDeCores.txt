@@ -1,0 +1,58 @@
+Identidade Visual: Estudo de Cores (App Motivador & Simples)
+Optamos por um Dark Mode Nativo (Modo Escuro). Além de economizar bateria no celular, o fundo escuro passa uma sensação de "foco", "zona de treino" e modernidade, fazendo com que as cores de gamificação saltem aos olhos e inspirem o usuário.
+
+1. Cores de Base e Fundo (A Fundação Simples)
+O objetivo aqui é reduzir a fadiga visual e dar destaque ao que importa. Não usamos preto absoluto (#000000), mas tons de chumbo/zinco.
+
+Fundo Principal do App: #18181B (Zinco Escuro)
+
+Onde entra: O fundo de todas as telas.
+
+Fundo de Cards e Inputs: #27272A (Zinco Médio)
+
+Onde entra: Nos "quadrados" onde ficam os exercícios, a ficha de treino e o card do ranking. Cria uma separação visual suave e elegante.
+
+Textos: #F8FAFC (Branco Gelo para títulos) e #94A3B8 (Cinza claro para subtítulos/fichas).
+
+2. Cor de Ação e Energia (A Motivação)
+Precisamos de uma cor que grite "Ação" e "Intensidade". O Laranja Vibrante é a cor da energia, da endorfina e do movimento.
+
+Laranja Chama (Flame Orange): #FF5722
+
+Psicologia: É estimulante, cria senso de urgência e vitalidade.
+
+Onde entra: No botão principal de "Iniciar Treino do Dia", no ícone de "Foguinho" da Ofensiva (Streak) e em destaques de recorde de carga. Quando o usuário entra no app, essa cor o puxa para a ação.
+
+3. Cor de Recompensa e Conclusão (A Inspiração)
+Quando o usuário faz algo certo (como bater os macros ou terminar um treino), o cérebro precisa de uma confirmação visual positiva e tranquilizadora.
+
+Verde Esmeralda (Success Green): #10B981
+
+Psicologia: Remete à saúde, aprovação, progresso e segurança ("Sinal Verde").
+
+Onde entra: No botão de "Check-in de Dieta Realizado", na barra de progresso quando atinge 100% da meta de proteínas e nos "Checks" de séries concluídas.
+
+4. Cor do Fator Social e Conquista (A Gamificação)
+Para o estilo Gymrats (Ranking de amigos), precisamos de uma cor que traga a sensação de prestígio e superioridade na competição saudável.
+
+Roxo Elétrico (Electric Violet): #8B5CF6
+
+Psicologia: É a cor histórica da nobreza, da ambição e da sabedoria. Em jogos, sempre representa o nível "Épico" ou a liderança.
+
+Onde entra: No pódio do Ranking de Amigos (Top 1, 2 e 3), em selos (Badges) de conquistas (ex: "1 mês sem errar a dieta") e no avatar do usuário.
+
+Tipografia (A Fonte do App)
+Para manter o visual simples e inspirador, as fontes precisam ser grossas nos títulos (impacto) e super legíveis nos textos menores (durante o treino, a pessoa está suada e o celular pode estar longe).
+
+Fonte Única Recomendada: Inter ou Outfit.
+
+Justificativa: São fontes sem serifa (sans-serif), limpas, desenhadas especificamente para telas de celular. Títulos em negrito ficam robustos (inspirando força), e os números (ex: 45kg) ficam perfeitamente alinhados e fáceis de ler.
+
+Resumo da Experiência Visual (Como o usuário vai sentir o app)
+Ele abre o app e vê um fundo Escuro e Elegante. (Sensação: "Estou no meu ambiente de foco").
+
+O botão de treino e o foguinho da ofensiva brilham em Laranja. (Sensação: "Preciso agir, estou energizado").
+
+Ele bate a meta da dieta e o card acende em Verde. (Sensação: "Dever cumprido, estou saudável").
+
+Ele passa o amigo no ranking e seu nome ganha um contorno Roxo. (Sensação: "Sou competitivo, estou evoluindo").

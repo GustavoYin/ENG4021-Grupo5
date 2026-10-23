@@ -1,0 +1,98 @@
+### 1. MacroFactor — nutrição adaptativa
+
+
+* Calcula metas de calorias e macronutrientes
+* Estima o gasto energético do usuário
+* Ajusta as metas conforme os dados registrados
+* Permite alterar objetivos e distribuição de macros
+* Tem possibilidade de ajustar o orçamento diário de calorias
+
+
+---
+
+### 2. MyFitnessPal — diário alimentar + exercício
+
+
+É uma referência muito boa para o **dashboard de saldo energético**.
+
+O usuário registra alimentos e exercícios e o aplicativo calcula calorias consumidas, exercício e quanto ainda resta para o dia. Também permite criar alimentos, refeições e receitas próprias. ([MyFitnessPal Ajuda][2])
+
+Inclusive, atualmente o app tem uma tela "Today" que reúne alimentação, água, exercício, peso, calorias e macros.
+
+
+
+---
+
+### 3. Cronometer — análise nutricional detalhada
+
+
+
+Muito interessante para a parte de **análise cruzada dos dados**.
+
+Além de calorias e macros, ele acompanha micronutrientes e permite conectar alimentação, exercícios e diversos dados de saúde.
+
+
+---
+
+### 4. WHOOP — treino + recuperação + ciclo
+
+
+
+Esse é uma referência **muito importante para a ideia de "seu ritmo"**.
+
+O WHOOP cruza informações de sono, recuperação e treino. Ele também possui recursos de acompanhamento do ciclo menstrual e usa os dados para gerar recomendações personalizadas de sono e carga de treino. 
+
+Uma coisa especialmente interessante é que ele tenta aprender **como aquele indivíduo responde ao ciclo**, em vez de simplesmente assumir que todas as pessoas terão a mesma experiência. 
+
+
+
+---
+
+### 5. Fitbod — treino personalizado
+
+
+
+É uma referência muito boa para a parte de musculação.
+
+O usuário informa objetivo, equipamentos disponíveis e frequência de treino, e o app utiliza essas informações para personalizar exercícios, séries, repetições e intensidade.
+
+Também permite criar exercícios personalizados e mantê-los no histórico. 
+
+
+---
+
+### 6. Hevy — registro de academia + social
+
+
+
+Esse é particularmente interessante porque junta **treino + acompanhamento + componente social**.
+
+Permite registrar séries, repetições e cargas, acompanhar evolução, criar rotinas e analisar desempenho. Também possui feed social, seguidores, curtidas, comentários e compartilhamento de treinos. 
+
+Isso serve como referência para a parte:
+
+> "Salas de disputa entre amigos"
+
+e também para o seu registro de treino.
+
+---
+
+### 7. Strava — competição baseada em constância
+
+
+
+---
+| Parte da  proposta           | Principal referência       |
+| ---------------------------- | -------------------------- |
+| Calorias e macros            | **MyFitnessPal**           |
+| Metas que se adaptam         | **MacroFactor**            |
+| Análise nutricional          | **Cronometer**             |
+| Ciclo + treino + recuperação | **WHOOP**                  |
+| Registro de musculação       | **Fitbod / Hevy**          |
+| Social e competição          | **Hevy / Strava**          |
+| Constância                   | **Strava**                 |
+| Refeições e receitas         | **MyFitnessPal / Lifesum** |
+
+
+
+
