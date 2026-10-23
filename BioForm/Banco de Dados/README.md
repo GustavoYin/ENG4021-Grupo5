@@ -4,8 +4,8 @@ Tabelas criadas a partir de `App Saúde/modelagemDados.txt`, seguindo a aula
 *Atividade 03 — Modelagem de Dados*. Projeto Django `bioform`, app `saude`
 (as tabelas estão em `saude/models.py` e as telas do admin em `saude/admin.py`).
 
-Os apps `contas`, `medidas_caseiras` e `metas` ficam nas pastas de `BioForm/Sprint-6` e são
-carregados por `bioform/settings.py`.
+O app `contas` (login, cadastro e perfil) também fica aqui. Os apps `diario`, `medidas_caseiras` e
+`metas` ficam nas pastas de `BioForm/Sprint-6` e são carregados por `bioform/settings.py`.
 
 | Domínio | Tabelas |
 |---|---|
@@ -29,7 +29,7 @@ python manage.py runserver
 
 Site: http://127.0.0.1:8000/ · Admin: http://127.0.0.1:8000/admin/
 
-Testes: `python manage.py test saude contas medidas_caseiras metas`
+Testes: `python manage.py test saude contas diario medidas_caseiras metas`
 
 ## Dados que já vêm carregados
 

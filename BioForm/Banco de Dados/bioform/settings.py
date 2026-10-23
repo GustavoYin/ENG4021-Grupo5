@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Apps da Sprint 6: cada tarefa fica na sua pasta em BioForm/Sprint-6
 SPRINT_6 = BASE_DIR.parent / 'Sprint-6'
-for pasta in ('autenticacao-usuarios', 'medidas-caseiras', 'calculadora-metas'):
+for pasta in ('diario-alimentar', 'medidas-caseiras', 'calculadora-metas'):
     sys.path.insert(0, str(SPRINT_6 / pasta))
 
 
@@ -44,9 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'saude',
-    'contas',            # Sprint-6/autenticacao-usuarios
+    'contas',            # login, cadastro e perfil
     'medidas_caseiras',  # Sprint-6/medidas-caseiras
     'metas',             # Sprint-6/calculadora-metas
+    'diario',            # Sprint-6/diario-alimentar
 ]
 
 MIDDLEWARE = [
