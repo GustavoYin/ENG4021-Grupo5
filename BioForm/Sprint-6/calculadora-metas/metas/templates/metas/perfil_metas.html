@@ -1,0 +1,114 @@
+{% extends 'contas/base_perfil.html' %}
+{% load bioform %}
+{% block titulo %}{% if onboarding %}Seu perfil (4/4){% else %}Minhas metas{% endif %}{% endblock %}
+{% block conteudo %}
+    <h1>{% if onboarding %}Suas metas estão prontas!{% else %}Olá, {{ usuario }}! Estas são suas metas{% endif %}</h1>
+    <p class="subtitle">Calculamos tudo a partir do seu perfil. Veja de onde vem cada número.</p>
+
+    <!-- Resumo do perfil usado no cálculo -->
+    <section class="block">
+      <h2 class="block-title">Perfil usado no cálculo</h2>
+      <p class="block-sub">Algo errado? Ajuste e as metas são recalculadas na hora.</p>
+      <div class="chips">
+        <span class="tag tag-water">{{ usuario.get_sexo_biologico_display }} · {{ usuario.idade }} anos</span>
+        <span class="tag tag-water">{{ medida.peso_kg|decimal_br }} kg · {{ usuario.altura_cm }} cm</span>
+        <span class="tag tag-violet">{{ usuario.get_biotipo_display }}</span>
+        <span class="tag tag-flame">{{ objetivo }}</span>
+        {% for e in esportes %}
+        <span class="tag tag-green">{{ e.esporte.nome }} {{ e.frequencia_semanal|vezes_por_semana }} · {{ e.get_intensidade_display }}</span>
+        {% empty %}
+        <span class="tag tag-green">Sem esportes marcados</span>
+        {% endfor %}
+      </div>
+      <p class="disclaimer"><a href="{% url 'perfil_dados' %}">Editar dados</a> · <a href="{% url 'perfil_objetivo' %}">Editar objetivo</a> · <a href="{% url 'perfil_esportes' %}">Editar esportes</a></p>
+    </section>
+
+    <!-- Conta das calorias -->
+    <section class="block">
+      <h2 class="block-title">Como sua meta foi calculada</h2>
+      <div class="calc">
+        <div class="calc-row">
+          <div><span>Metabolismo basal (TMB)</span><small>Mifflin-St Jeor · {{ medida.peso_kg|decimal_br }} kg, {{ usuario.altura_cm }} cm, {{ usuario.idade }} anos</small></div>
+          <b>{{ metas.tmb|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto dos esportes</span><small>{% for e in esportes %}{{ e.frequencia_semanal|vezes_por_semana }} {{ e.esporte.nome|lower }} {{ e.get_intensidade_display|lower }}{% if not forloop.last %} + {% endif %}{% empty %}Nenhum esporte marcado{% endfor %}</small></div>
+          <b class="plus">+{{ metas.gasto_esportes|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Atividade diária e digestão</span><small>NEAT + efeito térmico dos alimentos</small></div>
+          <b class="plus">+{{ metas.atividade_diaria|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto diário total (TDEE)</span><small>Quanto você gasta por dia</small></div>
+          <b>{{ metas.tdee|milhar }} kcal</b>
+        </div>
+        <div class="calc-row total">
+          <div>
+            <span>Seu objetivo: {{ objetivo|lower }}</span>
+            <small>{% if metas.piso_tmb %}Déficit limitado: a meta não fica abaixo da sua TMB{% elif metas.ajuste < 0 %}Déficit moderado e seguro{% elif metas.ajuste > 0 %}Superávit controlado{% else %}Sem ajuste: calorias em equilíbrio{% endif %}</small>
+          </div>
+          <b class="{% if metas.ajuste < 0 %}minus{% else %}plus{% endif %}">{% if metas.ajuste < 0 %}−{% elif metas.ajuste > 0 %}+{% endif %}{{ metas.ajuste|absoluto|milhar }} kcal</b>
+        </div>
+      </div>
+    </section>
+
+    <div class="goal">
+      <div>
+        <small>Meta diária sugerida</small>
+        <strong>{{ metas.calorias|milhar }} <span>kcal</span></strong>
+      </div>
+      {% if metas.ajuste < 0 %}
+      <span class="tag tag-flame">🔥 Déficit de {{ metas.ajuste|absoluto|milhar }} kcal</span>
+      {% elif metas.ajuste > 0 %}
+      <span class="tag tag-violet">💪 Superávit de {{ metas.ajuste|milhar }} kcal</span>
+      {% else %}
+      <span class="tag tag-water">⚖️ Equilíbrio</span>
+      {% endif %}
+    </div>
+
+    <!-- Macros e água -->
+    <section class="block">
+      <h2 class="block-title">Metas diárias</h2>
+      <p class="block-sub">Divisão das calorias entre os macronutrientes, mais a sua hidratação.</p>
+      <div class="macros">
+        <div class="macro m-prot">
+          <div class="macro-head"><strong>Proteínas</strong><b>{{ metas.proteina_g }} g</b></div>
+          <small>{{ proteina_por_kg|decimal_br }} g/kg · preservação e construção muscular · {{ metas.percentual_proteina }}% das kcal</small>
+          <div class="bar"><span style="width: {{ metas.percentual_proteina }}%"></span></div>
+          {% if pratica.frango_g %}<p class="pratica">🍗 Na prática: ≈ {{ pratica.frango_g|milhar }} g de frango grelhado no dia, ou combine carnes, ovos, laticínios e feijão</p>{% endif %}
+        </div>
+        <div class="macro m-carb">
+          <div class="macro-head"><strong>Carboidratos</strong><b>{{ metas.carbo_g }} g</b></div>
+          <small>Calorias restantes da meta · energia para o treino · {{ metas.percentual_carbo }}% das kcal</small>
+          <div class="bar"><span style="width: {{ metas.percentual_carbo }}%"></span></div>
+          {% if pratica.arroz_g %}<p class="pratica">🍚 Na prática: ≈ {{ pratica.arroz_g|milhar }} g de arroz cozido no dia, ou divida entre pães, frutas, batata e aveia</p>{% endif %}
+        </div>
+        <div class="macro m-gord">
+          <div class="macro-head"><strong>Gorduras boas</strong><b>{{ metas.gordura_g }} g</b></div>
+          <small>0,8 g/kg · regulação hormonal e saciedade · {{ metas.percentual_gordura }}% das kcal</small>
+          <div class="bar"><span style="width: {{ metas.percentual_gordura }}%"></span></div>
+          {% if pratica.colheres_azeite %}<p class="pratica">🫒 Na prática: ≈ {{ pratica.colheres_azeite }} colheres de sopa de azeite, contando o que já vem nas carnes, ovos e castanhas</p>{% endif %}
+        </div>
+        <div class="macro m-agua">
+          <div class="macro-head"><strong>💧 Água</strong><b>{{ metas.agua_ml|milhar }} ml</b></div>
+          <small>35 ml/kg · {{ metas.copos_agua }} copos de 250 ml por dia</small>
+          <div class="bar"><span style="width: 100%"></span></div>
+          <p class="pratica">🥤 Na prática: ≈ {{ metas.garrafinhas_agua }} garrafinhas de 500 ml ao longo do dia</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong>Os gramas são do nutriente, não do alimento.</strong>
+        {{ metas.proteina_g }} g de proteína não são {{ metas.proteina_g }} g de carne: 100 g de frango grelhado têm cerca de 32 g de proteína (TACO).
+      </div>
+      <p class="disclaimer">Estimativa pela equação de Mifflin-St Jeor e referências de macros por kg. Não substitui nutricionista ou médico.</p>
+    </section>
+
+    {% if onboarding %}
+    <div class="actions">
+      <a href="{% url 'perfil_esportes' %}" class="btn btn-ghost">Voltar</a>
+      <a href="{% url 'perfil_concluir' %}" class="btn btn-primary">Começar a usar o BioForm</a>
+    </div>
+    {% endif %}
+{% endblock %}
