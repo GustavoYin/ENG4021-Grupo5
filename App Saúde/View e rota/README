@@ -1,0 +1,30 @@
+# BioForm Health OS — telas ligadas ao banco
+
+Rotas e views Flask para as telas do `App Saúde/Mockup Login`, com SQLite.
+
+## Rodar
+```
+pip install -r requirements.txt
+python app.py            # http://127.0.0.1:5000
+python -m unittest -v    # testes do fluxo completo
+```
+Variáveis opcionais: `SECRET_KEY`, `DATABASE_PATH`.
+
+## Rotas
+| URL | View | Tela | Login |
+|---|---|---|---|
+| `/` | `index` | redireciona | – |
+| `/login` | `login` | login.html | não |
+| `/cadastro` | `cadastro` | cadastro.html | não |
+| `/esqueci-senha` | `esqueci_senha` | esqueci-senha.html | não |
+| `/perfil/1-dados` | `perfil_dados` | perfil-1-dados.html | sim |
+| `/perfil/2-objetivo` | `perfil_objetivo` | perfil-2-objetivo.html | sim |
+| `/perfil/3-esportes` | `perfil_esportes` | perfil-3-esportes.html | sim |
+| `/perfil/4-resultado` | `perfil_resultado` | perfil-4-resultado.html | sim |
+| `/sair` | `sair` | encerra a sessão | – |
+
+## Pendências
+- Recuperação de senha: não envia e-mail ainda (só mostra a confirmação).
+- Sem proteção CSRF (usar Flask-WTF antes de publicar).
+- "Começar a usar o BioForm" (perfil 4) aponta para `#`: falta o painel inicial.
+- Tabelas de treino, alimentos, diário e gamificação (modelagemDados.txt) ainda não foram criadas.

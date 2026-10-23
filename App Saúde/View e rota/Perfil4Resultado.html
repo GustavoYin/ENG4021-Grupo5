@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suas metas (4/4) | BioForm Health OS</title>
+  <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="onb">
+
+  <header class="onb-top">
+    <div class="onb-top-inner">
+      <div class="brand">
+        <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo BioForm">
+        <div class="brand-name">Bio<span>Form</span><small>Health OS</small></div>
+      </div>
+      <span class="step-label">Passo <b>4</b> de 4</span>
+    </div>
+    <div class="progress"><span style="width: 100%"></span></div>
+  </header>
+
+  <main class="onb-main">
+    <h1>Suas metas estão prontas!</h1>
+    <p class="subtitle">Calculamos tudo a partir do seu perfil. Veja de onde vem cada número.</p>
+
+    <section class="block">
+      <h2 class="block-title">Perfil usado no cálculo</h2>
+      <p class="block-sub">Algo errado? Volte e ajuste.</p>
+      <div class="chips">
+        <span class="tag tag-water">{{ p.sexo }} · {{ p.idade }} anos</span>
+        <span class="tag tag-water">{{ p.peso|decimal }} kg · {{ p.altura }} cm</span>
+        <span class="tag tag-violet">{{ p.biotipo }}</span>
+        <span class="tag tag-flame">{{ p.objetivo }}</span>
+        {% for e in p.esportes %}<span class="tag tag-green">{{ e.nome }} {{ e.frequencia }} · {{ e.intensidade|capitalize }}</span>
+        {% endfor %}
+      </div>
+      <p class="disclaimer"><a href="{{ url_for('perfil_dados') }}">Editar dados</a> · <a href="{{ url_for('perfil_objetivo') }}">Editar objetivo</a> · <a href="{{ url_for('perfil_esportes') }}">Editar esportes</a></p>
+    </section>
+
+    <section class="block">
+      <h2 class="block-title">Como sua meta foi calculada</h2>
+      <div class="calc">
+        <div class="calc-row">
+          <div><span>Metabolismo basal (TMB)</span><small>Mifflin-St Jeor · {{ p.peso|decimal }} kg, {{ p.altura }} cm, {{ p.idade }} anos</small></div>
+          <b>{{ m.tmb|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto dos esportes</span><small>{% if p.esportes %}{{ p.esportes|map(attribute='resumo')|join(' + ') }}{% else %}Nenhum esporte informado{% endif %}</small></div>
+          <b class="plus">+{{ m.gasto_esportes|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Atividade diária e digestão</span><small>NEAT + efeito térmico dos alimentos</small></div>
+          <b class="plus">+{{ m.neat|milhar }} kcal</b>
+        </div>
+        <div class="calc-row">
+          <div><span>Gasto diário total (TDEE)</span><small>Quanto você gasta por dia</small></div>
+          <b>{{ m.tdee|milhar }} kcal</b>
+        </div>
+        <div class="calc-row total">
+          <div><span>Seu objetivo: {{ p.objetivo|lower }}</span><small>{{ ajuste_texto }}</small></div>
+          <b{% if m.ajuste < 0 %} class="minus"{% elif m.ajuste > 0 %} class="plus"{% endif %}>{{ ajuste_sinal }}{{ m.ajuste|abs }} kcal</b>
+        </div>
+      </div>
+    </section>
+
+    <div class="goal">
+      <div>
+        <small>Meta diária sugerida</small>
+        <strong>{{ m.meta|milhar }} <span>kcal</span></strong>
+      </div>
+      <span class="tag tag-flame">{{ ajuste_tag }}</span>
+    </div>
+
+    <section class="block">
+      <h2 class="block-title">Metas diárias</h2>
+      <p class="block-sub">Divisão das calorias entre os macronutrientes, mais a sua hidratação.</p>
+      <div class="macros">
+        <div class="macro m-prot">
+          <div class="macro-head"><strong>Proteínas</strong><b>{{ m.prot_g }} g</b></div>
+          <small>2,1 g/kg · preservação e construção muscular · {{ m.prot_pct }}% das kcal</small>
+          <div class="bar"><span style="width: {{ m.prot_pct }}%"></span></div>
+          <p class="pratica">🍗 Na prática: ≈ {{ m.frango_g }} g de frango grelhado no dia, ou combine carnes, ovos, laticínios e feijão</p>
+        </div>
+        <div class="macro m-carb">
+          <div class="macro-head"><strong>Carboidratos</strong><b>{{ m.carb_g }} g</b></div>
+          <small>Calorias restantes da meta · energia para o treino · {{ m.carb_pct }}% das kcal</small>
+          <div class="bar"><span style="width: {{ m.carb_pct }}%"></span></div>
+          <p class="pratica">🍚 Na prática: ≈ {{ m.arroz_g }} g de arroz cozido no dia, ou divida entre pães, frutas, batata e aveia</p>
+        </div>
+        <div class="macro m-gord">
+          <div class="macro-head"><strong>Gorduras boas</strong><b>{{ m.gord_g }} g</b></div>
+          <small>0,8 g/kg · regulação hormonal e saciedade · {{ m.gord_pct }}% das kcal</small>
+          <div class="bar"><span style="width: {{ m.gord_pct }}%"></span></div>
+          <p class="pratica">🫒 Na prática: ≈ {{ m.azeite_colheres }} colheres de sopa de azeite, contando o que já vem nas carnes, ovos e castanhas</p>
+        </div>
+        <div class="macro m-agua">
+          <div class="macro-head"><strong>💧 Água</strong><b>{{ m.agua_ml|milhar }} ml</b></div>
+          <small>35 ml/kg · {{ m.copos }} copos de 250 ml por dia</small>
+          <div class="bar"><span style="width: 100%"></span></div>
+          <p class="pratica">🥤 Na prática: ≈ {{ m.garrafas }} garrafinhas de 500 ml ao longo do dia</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <strong>Os gramas são do nutriente, não do alimento.</strong>
+        {{ m.prot_g }} g de proteína não são {{ m.prot_g }} g de carne: 100 g de frango têm cerca de 31 g de proteína.
+      </div>
+      <p class="disclaimer">Estimativa pela equação de Mifflin-St Jeor e referências de macros por kg. Não substitui nutricionista ou médico.</p>
+    </section>
+
+    <div class="actions">
+      <a href="{{ url_for('perfil_esportes') }}" class="btn btn-ghost">Voltar</a>
+      <!-- Próximo mockup: Painel inicial -->
+      <a href="#" class="btn btn-primary">Começar a usar o BioForm</a>
+    </div>
+  </main>
+
+</body>
+</html>
