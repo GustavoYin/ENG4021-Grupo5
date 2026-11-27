@@ -1,0 +1,137 @@
+From 6319ee39d217010ffb0dc0f5775150f47ab52c63 Mon Sep 17 00:00:00 2001
+From: GustavoYin <GustavoYin@users.noreply.github.com>
+Date: Thu, 26 Nov 2026 22:08:07 -0300
+Subject: [PATCH] =?UTF-8?q?Persona=20Edson=20Arantes=20no=20popular=5Fexem?=
+ =?UTF-8?q?plo=20(a=20persona=20da=20apresenta=C3=A7=C3=A3o)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Treino A e B iguais aos do bloco de notas da apresentação, cardio na quarta,
+futebol no sábado, almoço de arroz, feijão, frango e brócolis.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_018gcqhbFS5ZxoB1aPpg74fq
+---
+ .../management/commands/popular_exemplo.py    | 73 ++++++++++++++++++-
+ 1 file changed, 70 insertions(+), 3 deletions(-)
+
+diff --git a/BioForm/Banco de Dados/saude/management/commands/popular_exemplo.py b/BioForm/Banco de Dados/saude/management/commands/popular_exemplo.py
+index 5d4c613..809781b 100644
+--- a/BioForm/Banco de Dados/saude/management/commands/popular_exemplo.py	
++++ b/BioForm/Banco de Dados/saude/management/commands/popular_exemplo.py	
+@@ -1,7 +1,7 @@
+ """
+ python manage.py popular_exemplo
+ 
+-Povoa o banco com 11 personas bem diferentes entre si e o que cada uma registrou nas últimas semanas,
++Povoa o banco com 12 personas bem diferentes entre si e o que cada uma registrou nas últimas semanas,
+ para o site e o admin já abrirem com dados e para mostrar que o app serve para todo mundo:
+ idades de 16 a 74 anos, homens e mulheres, corpos e biotipos diferentes, os quatro objetivos,
+ os 10 esportes do catálogo, um atleta cadeirante, uma pessoa vegetariana, quem está começando agora
+@@ -155,6 +155,45 @@ Séries: 3x20s
+ Carga: 0kg
+ """
+ 
++# Série do Edson (a persona da apresentação): a mesma que ele anotava no bloco de notas
++TREINO_EDSON_A = """Supino reto
++Séries: 4x8
++Carga: 50kg
++Intervalo: 90s
++
++Remada curvada
++Séries: 4x10
++Carga: 40kg
++Intervalo: 90s
++
++Rosca direta
++Séries: 3x12
++Carga: 14kg
++
++Tríceps na polia
++Séries: 3x12
++Carga: 25kg
++"""
++
++TREINO_EDSON_B = """Agachamento livre
++Séries: 4x10
++Carga: 60kg
++Intervalo: 120s
++
++Desenvolvimento com halteres
++Séries: 4x8
++Carga: 16kg
++Intervalo: 90s
++
++Leg press 45
++Séries: 3x12
++Carga: 160kg
++
++Abdominal supra
++Séries: 3x15
++Carga: 0kg
++"""
++
+ # Refeições de um dia: (tipo, [(começo do nome do alimento na TACO, porções de 100 g)])
+ CARDAPIO = [
+     ('cafe_manha', [('Pão, trigo, francês', Decimal('0.5')), ('Ovo, de galinha, inteiro, cozido', Decimal('1')),
+@@ -190,6 +229,17 @@ CARDAPIO_VEGETARIANO = [
+                 ('Queijo, minas, frescal', Decimal('0.3')), ('Tomate, com semente', Decimal('0.8'))]),
+ ]
+ 
++# Edson: arroz, feijão, frango e brócolis no almoço; ovo e banana no lanche
++CARDAPIO_EDSON = [
++    ('cafe_manha', [('Pão, trigo, francês', Decimal('0.5')), ('Ovo, de galinha, inteiro, cozido', Decimal('1.5')),
++                    ('Café, infusão', Decimal('1'))]),
++    ('almoco', [('Arroz, tipo 1, cozido', Decimal('1.5')), ('Feijão, carioca, cozido', Decimal('1')),
++                ('Frango, peito, sem pele, grelhado', Decimal('1.5')), ('Brócolis, cozido', Decimal('1'))]),
++    ('lanche_tarde', [('Ovo, de galinha, inteiro, cozido', Decimal('1')), ('Banana, prata', Decimal('1.2'))]),
++    ('jantar', [('Batata, doce, cozida', Decimal('2')), ('Carne, bovina, patinho, sem gordura, grelhado', Decimal('1.2')),
++                ('Alface', Decimal('0.3'))]),
++]
++
+ # Dias da semana como nos campos dias_fixos / dias_semana
+ DIAS = {'seg': 0, 'ter': 1, 'qua': 2, 'qui': 3, 'sex': 4, 'sab': 5, 'dom': 6}
+ 
+@@ -329,19 +379,36 @@ PESSOAS = [
+                    livre('Yoga', 'seg', 7, 60, 'leve', 'Yoga no estúdio')],
+         'cardapio': CARDAPIO_VEGETARIANO, 'dias_diario': 7, 'agua': 2000, 'sequencia': 16,
+     },
++    {
++        # A persona da apresentação: treinava e comia certo, mas anotava tudo no bloco de notas
++        'email': 'edson' + DOMINIO, 'nome': 'Edson Arantes', 'apelido': 'Edson', 'nascimento': date(1991, 10, 23),
++        'sexo': 'masculino', 'altura': 182, 'biotipo': 'mesomorfo', 'objetivo': 'hipertrofia',
++        'peso_inicial': Decimal('84.0'), 'peso_semanal': Decimal('0.3'), 'peso_meta': Decimal('88'),
++        'resumo': 'academia 4x, cardio e futebol no sábado; saiu do bloco de notas para o app',
++        'esportes': [('Musculação', 4, 'intensa', 60, 'seg,ter,qui,sex'), ('Corrida', 1, 'moderada', 30, 'qua'),
++                     ('Futebol', 1, 'intensa', 90, 'sab')],
++        'fichas': [('Treino A · Peito, costas e braços', 'seg,qui', TREINO_EDSON_A, Decimal('1')),
++                   ('Treino B · Pernas, ombros e abdômen', 'ter,sex', TREINO_EDSON_B, Decimal('1'))],
++        'livres': [livre('Corrida', 'qua', 7, 30, 'moderada', 'Cardio na esteira', Decimal('4.5'), Decimal('0.2'),
++                         obs='30 minutos de cardio, ritmo constante.'),
++                   livre('Futebol', 'sab', 9, 90, 'intensa', 'Pelada com os amigos',
++                         obs='Jogo de sábado no society, dois tempos de 45.')],
++        'cardapio': CARDAPIO_EDSON, 'dias_diario': 7, 'agua': 3000, 'sequencia': 20,
++    },
+ ]
+ 
+ # Quem está em qual grupo (o primeiro é quem criou) e as amizades, pelos e-mails sem o domínio
+ GRUPOS = [
+     ('Turma ENG4021', 'Grupo de exemplo do BioForm', 'ENG4021EXE',
+-     ['ana', 'bruno', 'carla', 'beatriz', 'thiago', 'fernanda', 'rafael'],
++     ['ana', 'bruno', 'carla', 'beatriz', 'thiago', 'fernanda', 'rafael', 'edson'],
+      ('Quem treina mais no mês', 'sessoes', 'Vale musculação, corrida e qualquer treino registrado.')),
+     ('Movimento 60+', 'Para quem quer se cuidar em qualquer idade', 'MOV60MAIS',
+      ['lucia', 'antonio', 'marcos'],
+      ('Mais dias bebendo água', 'agua', 'Quem bater a meta de água em mais dias do mês.')),
+ ]
+ AMIZADES = [('ana', 'bruno'), ('ana', 'carla'), ('bruno', 'beatriz'), ('bruno', 'rafael'), ('bruno', 'thiago'),
+-            ('carla', 'fernanda'), ('lucia', 'antonio'), ('marcos', 'rafael'), ('marcos', 'lucia')]
++            ('carla', 'fernanda'), ('lucia', 'antonio'), ('marcos', 'rafael'), ('marcos', 'lucia'),
++            ('edson', 'bruno'), ('edson', 'rafael'), ('edson', 'ana'), ('edson', 'beatriz')]
+ 
+ 
+ def cpf_valido(base):
+-- 
+2.43.0
+
